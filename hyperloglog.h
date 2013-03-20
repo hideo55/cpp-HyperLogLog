@@ -1,6 +1,13 @@
 #ifndef HYPERLOGLOG_H
 #define HTPERLOGLOG_H
 
+/*!
+ * @file hyperloglog.h
+ * @brief HyperLogLog cardinality estimator
+ * @date Created 2013/3/20
+ * @author Hideaki Ohno
+ */
+
 #include<vector>
 #include<cmath>
 #include"murmur3.h"
@@ -10,12 +17,15 @@
 static const double pow_2_32 =  4294967296.0;
 static const double neg_pow_2_32 = -4294967296.0;
 
+/*! @class HyperLogLog
+ *  @brief Implement of 'HyperLogLog' estimate cardinality algorithm
+ */
 class HyperLogLog {
 private:
     std::vector<uint8_t> M;
-    uint8_t  b;
-    uint32_t m;
-    double alphaMM;
+    uint8_t  b; //! bit size
+    uint32_t m; //! register size
+    double alphaMM; //! alpha * m^2
 
     uint8_t rho(uint32_t x, uint8_t b) {
         uint8_t v = 1;
@@ -28,10 +38,13 @@ private:
 
 public:
 
+    /*!
+     * Constructor
+     *
+     * @param[in] b_ bit size
+     */
     HyperLogLog(uint8_t b_) : b(b_), m(1<<b), M(m+1,0) {
-       std::cout << m << std::endl; 
-
-       double alpha = 0.0;
+       double alpha;
        switch(m){
            case 16:
                alpha = 0.673;
@@ -46,9 +59,14 @@ public:
                alpha = 0.7213/(1.0 + 1.079/m);
        }
        alphaMM = alpha * m * m;
-
     }
 
+    /*!
+     * Add element to the estimator
+     *
+     * @param[in] str string to add
+     * @param[in] len length of string
+     */
     void add(const char* str, uint32_t len){
         uint32_t hash;
         MurmurHash3_x86_32(str,len,HLL_HASH_SEED, (void*)&hash);
@@ -59,6 +77,11 @@ public:
         }
     }
 
+    /*!
+     * Estimate cardinality value.
+     *
+     * @return Estimated cardinality value.
+     */
     double estimate(){
         double estimate;
         uint8_t rank = 0;

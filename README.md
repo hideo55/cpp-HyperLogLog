@@ -19,7 +19,7 @@ int main(){
     vector<string>::iterator iter = somedata.begin();
     vector<string>::iterator iter_end = somedata.end();
     for(;iter != iter_end; ++iter){
-        hll.add(iter->c_str());
+        hll.add(iter->c_str(), iter->size());
     }
 
     double cardinality = hll.estimate();
