@@ -4,7 +4,8 @@ C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/F
 
 ## Usage
 
-```
+```C++
+
 #include <vector>
 #include <string>
 #include <iostream>
