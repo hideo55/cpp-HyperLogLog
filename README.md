@@ -33,7 +33,7 @@ int main(){
 ```
 ## Document
 
-[http://hideo55.github.com/cpp-HyperLogLog/]
+http://hideo55.github.com/cpp-HyperLogLog/
 
 ## Author
 
