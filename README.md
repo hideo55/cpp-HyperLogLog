@@ -31,6 +31,9 @@ int main(){
 }
 
 ```
+## Document
+
+[http://hideo55.github.com/cpp-HyperLogLog/]
 
 ## Author
 
