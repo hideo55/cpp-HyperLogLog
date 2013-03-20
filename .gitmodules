@@ -1,0 +1,6 @@
+[submodule "git@github.com:hideo55/cpp-HyperLogLog.git"]
+	path = git@github.com:hideo55/cpp-HyperLogLog.git
+	url = git@github.com:hideo55/cpp-HyperLogLog.git
+[submodule "docs"]
+	path = docs
+	url = git@github.com:hideo55/cpp-HyperLogLog.git
