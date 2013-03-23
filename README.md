@@ -25,7 +25,7 @@ int main(){
 
     double cardinality = hll.estimate();
 
-    cout << 'Cardinality:' << cardinality << endl;
+    cout << "Cardinality:" << cardinality << endl;
 
     return 0;
 }
