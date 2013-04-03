@@ -102,7 +102,9 @@ Macros</h2></td></tr>
 <tr class="separator:ab32bb365c62dcb0da675e248b7e814a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e0f90a6ea3d3db65033b8ace70cb65a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="murmur3_8h.html#a8e0f90a6ea3d3db65033b8ace70cb65a">BIG_CONSTANT</a>(x)&#160;&#160;&#160;(x##LLU)</td></tr>
 <tr class="separator:a8e0f90a6ea3d3db65033b8ace70cb65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bb99bca7dfe84bb2907e6030938c47e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="murmur3_8h.html#a7bb99bca7dfe84bb2907e6030938c47e">getblock</a>(p, i)&#160;&#160;&#160;(p[i])</td></tr>
+<tr class="memitem:aab7d2a13f014568a98cf8bf9a09c7035"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="murmur3_8h.html#aab7d2a13f014568a98cf8bf9a09c7035">BYTESWAP</a>(x)</td></tr>
+<tr class="separator:aab7d2a13f014568a98cf8bf9a09c7035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bb99bca7dfe84bb2907e6030938c47e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="murmur3_8h.html#a7bb99bca7dfe84bb2907e6030938c47e">getblock</a>(p, i)&#160;&#160;&#160;<a class="el" href="murmur3_8h.html#aab7d2a13f014568a98cf8bf9a09c7035">BYTESWAP</a>(p[i])</td></tr>
 <tr class="separator:a7bb99bca7dfe84bb2907e6030938c47e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -130,6 +132,28 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="murmur3_8h_source.html#l00041">41</a> of file <a class="el" href="murmur3_8h_source.html">murmur3.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aab7d2a13f014568a98cf8bf9a09c7035"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BYTESWAP</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">((((x)&amp;0xFF)&lt;&lt;24) \</div>
+<div class="line">         |(((x)&gt;&gt;24)&amp;0xFF) \</div>
+<div class="line">         |(((x)&amp;0x0000FF00)&lt;&lt;8)    \</div>
+<div class="line">         |(((x)&amp;0x00FF0000)&gt;&gt;8)    )</div>
+</div><!-- fragment -->
+<p>Definition at line <a class="el" href="murmur3_8h_source.html#l00063">63</a> of file <a class="el" href="murmur3_8h_source.html">murmur3.h</a>.</p>
 
 </div>
 </div>
@@ -166,12 +190,12 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;(p[i])</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="murmur3_8h.html#aab7d2a13f014568a98cf8bf9a09c7035">BYTESWAP</a>(p[i])</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="murmur3_8h_source.html#l00047">47</a> of file <a class="el" href="murmur3_8h_source.html">murmur3.h</a>.</p>
+<p>Definition at line <a class="el" href="murmur3_8h_source.html#l00073">73</a> of file <a class="el" href="murmur3_8h_source.html">murmur3.h</a>.</p>
 
 </div>
 </div>
@@ -218,7 +242,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="murmur3_8h_source.html#l00052">52</a> of file <a class="el" href="murmur3_8h_source.html">murmur3.h</a>.</p>
+<p>Definition at line <a class="el" href="murmur3_8h_source.html#l00078">78</a> of file <a class="el" href="murmur3_8h_source.html">murmur3.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +282,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="murmur3_8h_source.html#l00070">70</a> of file <a class="el" href="murmur3_8h_source.html">murmur3.h</a>.</p>
+<p>Definition at line <a class="el" href="murmur3_8h_source.html#l00096">96</a> of file <a class="el" href="murmur3_8h_source.html">murmur3.h</a>.</p>
 
 </div>
 </div>
@@ -301,7 +325,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 21 2013 01:46:38 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 4 2013 02:32:14 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
