@@ -9,7 +9,7 @@ C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/F
 #include <vector>
 #include <string>
 #include <iostream>
-#include "hyperloglog.h"
+#include "hyperloglog.hpp"
 
 int main(){
     HyperLogLog hll(10);
