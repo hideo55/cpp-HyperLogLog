@@ -13,19 +13,19 @@ C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/F
 
 int main(){
     HyperLogLog hll(10);
-    vector<string> somedata;
+    std::vector<string> somedata;
 
     //Load data to somedata
 
-    vector<string>::iterator iter = somedata.begin();
-    vector<string>::iterator iter_end = somedata.end();
+    std::vector<std::string>::iterator iter = somedata.begin();
+    std::vector<std::string>::iterator iter_end = somedata.end();
     for(;iter != iter_end; ++iter){
         hll.add(iter->c_str(), iter->size());
     }
 
     double cardinality = hll.estimate();
 
-    cout << "Cardinality:" << cardinality << endl;
+    std::cout << "Cardinality:" << cardinality << std::endl;
 
     return 0;
 }
