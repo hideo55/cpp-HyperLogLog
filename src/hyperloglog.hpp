@@ -22,10 +22,10 @@ static const double neg_pow_2_32 = -4294967296.0;
  */
 class HyperLogLog {
 private:
-    std::vector<uint8_t> M;
     uint8_t  b;     /// register bit width
     uint32_t m;     /// register size
     double alphaMM; /// alpha * m^2
+    std::vector<uint8_t> M;
 
     uint8_t rho(uint32_t x, uint8_t b) {
         uint8_t v = 1;
