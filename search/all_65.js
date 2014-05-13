@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['estimate',['estimate',['../class_hyper_log_log.html#abae6df60611e7ceced97bcf214f3b39b',1,'HyperLogLog']]]
+  ['estimate',['estimate',['../classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177',1,'hll::HyperLogLog']]]
 ];

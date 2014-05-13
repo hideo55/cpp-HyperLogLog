@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hyperloglog',['HyperLogLog',['../class_hyper_log_log.html',1,'']]]
+  ['hyperloglog',['HyperLogLog',['../classhll_1_1_hyper_log_log.html',1,'hll']]]
 ];

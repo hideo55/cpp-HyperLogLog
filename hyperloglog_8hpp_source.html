@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,8 +88,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">hyperloglog.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="hyperloglog_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef HYPERLOGLOG_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno"><a class="code" href="hyperloglog_8hpp.html#aacb5995a442189f4ea299419c68323c5">    2</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define HTPERLOGLOG_H</span></div>
+<a href="hyperloglog_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#if !defined(HYPERLOGLOG_H)</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define HYPERLOGLOG_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include&lt;vector&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include&lt;cmath&gt;</span></div>
@@ -96,86 +97,90 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
 <div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="hyperloglog_8hpp.html#a21231cbc051c73769ed18fc81ef83f49">   15</a></span>&#160;<span class="preprocessor">#define HLL_HASH_SEED 313</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">double</span> pow_2_32 =  4294967296.0;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">double</span> neg_pow_2_32 = -4294967296.0;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="code" href="class_hyper_log_log.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a> {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::vector&lt;uint8_t&gt; M;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    uint8_t  b;     </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    uint32_t m;     </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">double</span> alphaMM; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    uint8_t rho(uint32_t x, uint8_t b) {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        uint8_t v = 1;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">while</span> (v &lt;= b &amp;&amp; !(x &amp; 0x80000000)) {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            v++;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            x &lt;&lt;= 1;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">return</span> v;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="class_hyper_log_log.html#ababba0b27fd7a7c0e6c4d06b9298c761">   46</a></span>&#160;    <a class="code" href="class_hyper_log_log.html#ababba0b27fd7a7c0e6c4d06b9298c761" title="Constructor.">HyperLogLog</a>(uint8_t b_) : b(b_), m(1&lt;&lt;b), M(m+1,0) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;       <span class="keywordtype">double</span> alpha;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;       <span class="keywordflow">switch</span>(m){</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;           <span class="keywordflow">case</span> 16:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;               alpha = 0.673;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;               <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;           <span class="keywordflow">case</span> 32:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;               alpha = 0.697;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;               <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;           <span class="keywordflow">case</span> 64:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;               alpha = 0.709;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;               <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;           <span class="keywordflow">default</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;               alpha = 0.7213/(1.0 + 1.079/m);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;       }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;       alphaMM = alpha * m * m;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="code" href="class_hyper_log_log.html#a86dcc06ed17f6ad745ddf1b661f271e7">   70</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_hyper_log_log.html#a86dcc06ed17f6ad745ddf1b661f271e7" title="Add element to the estimator.">add</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* str, uint32_t len){</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        uint32_t hash;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="murmur3_8h.html#a37412933f308bda727603640d9acefba">MurmurHash3_x86_32</a>(str,len,<a class="code" href="hyperloglog_8hpp.html#a21231cbc051c73769ed18fc81ef83f49">HLL_HASH_SEED</a>, (<span class="keywordtype">void</span>*)&amp;hash);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        uint32_t index = hash &gt;&gt; ( 32 - b );</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        uint8_t rank = rho((hash &lt;&lt; b), 32 - b);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">if</span>( rank &gt; M[index] ){</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            M[index] = rank;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="class_hyper_log_log.html#abae6df60611e7ceced97bcf214f3b39b">   85</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="class_hyper_log_log.html#abae6df60611e7ceced97bcf214f3b39b" title="Estimate cardinality value.">estimate</a>(){</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="class_hyper_log_log.html#abae6df60611e7ceced97bcf214f3b39b" title="Estimate cardinality value.">estimate</a>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        uint8_t rank = 0;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">double</span> sum = 0.0;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; m; i++) {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            sum += 1.0/pow(2.0, M[i]);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        estimate = alphaMM/sum; <span class="comment">// E in the original paper</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span>( estimate &lt;= 2.5 * m ) {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            uint32_t zeros = 0;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; m; i++) {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="keywordflow">if</span> (M[i] == 0) {</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                    zeros++;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                }</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordflow">if</span>( zeros != 0 ) {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                estimate = m * log((<span class="keywordtype">double</span>)m/zeros);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (estimate &gt; (1.0/30.0) * pow_2_32) {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            estimate = neg_pow_2_32 * log(1.0 - ( estimate/pow_2_32 ) );</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;};</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="namespacehll.html">   17</a></span>&#160;<span class="keyword">namespace </span>hll {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">double</span> pow_2_32 = 4294967296.0;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">double</span> neg_pow_2_32 = -4294967296.0;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a> {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#aa156090ff40e2050a5f14a80491bfe31">   33</a></span>&#160;    <a class="code" href="classhll_1_1_hyper_log_log.html#aa156090ff40e2050a5f14a80491bfe31" title="Constructor.">HyperLogLog</a>(uint8_t b_) :</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            b(b_), m(1 &lt;&lt; b), M(m + 1, 0) {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">double</span> alpha;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">switch</span> (m) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">case</span> 16:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                alpha = 0.673;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">case</span> 32:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                alpha = 0.697;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">case</span> 64:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                alpha = 0.709;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                alpha = 0.7213 / (1.0 + 1.079 / m);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        alphaMM = alpha * m * m;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7">   58</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7" title="Add element to the estimator.">add</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* str, uint32_t len) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        uint32_t hash;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="murmur3_8h.html#a37412933f308bda727603640d9acefba">MurmurHash3_x86_32</a>(str, len, <a class="code" href="hyperloglog_8hpp.html#a21231cbc051c73769ed18fc81ef83f49">HLL_HASH_SEED</a>, (<span class="keywordtype">void</span>*) &amp;hash);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        uint32_t index = hash &gt;&gt; (32 - b);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        uint8_t rank = rho((hash &lt;&lt; b), 32 - b);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">if</span> (rank &gt; M[index]) {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            M[index] = rank;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177">   73</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimate cardinality value.">estimate</a>() {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimate cardinality value.">estimate</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">double</span> sum = 0.0;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; m; i++) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            sum += 1.0 / pow(2.0, M[i]);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        estimate = alphaMM / sum; <span class="comment">// E in the original paper</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">if</span> (estimate &lt;= 2.5 * m) {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            uint32_t zeros = 0;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; m; i++) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keywordflow">if</span> (M[i] == 0) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    zeros++;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">if</span> (zeros != 0) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                estimate = m * log((<span class="keywordtype">double</span>) m / zeros);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (estimate &gt; (1.0 / 30.0) * pow_2_32) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            estimate = neg_pow_2_32 * log(1.0 - (estimate / pow_2_32));</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimate cardinality value.">estimate</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    uint8_t b;     </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    uint32_t m;     </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">double</span> alphaMM; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    std::vector&lt;uint8_t&gt; M;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    uint8_t rho(uint32_t x, uint8_t b) {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        uint8_t v = 1;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">while</span> (v &lt;= b &amp;&amp; !(x &amp; 0x80000000)) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            v++;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            x &lt;&lt;= 1;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">return</span> v;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;};</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;} <span class="comment">// namespace hll</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif // !defined(HYPERLOGLOG_H)</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Apr 4 2013 02:32:14 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 14 2014 01:26:59 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
