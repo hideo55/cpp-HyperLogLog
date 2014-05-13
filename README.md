@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hideo55/cpp-HyperLogLog.png?branch=master)](https://travis-ci.org/hideo55/cpp-HyperLogLog)
+
 # HyperLoglog
 
 C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf) algorithm.
