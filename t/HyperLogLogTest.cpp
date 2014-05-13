@@ -26,18 +26,19 @@ static void genRandomString(size_t len, std::string& str) {
 
 Describe(normal_pattern) 
 {
-    It(Create_instance) 
+    It(create_instance) 
     {
         HyperLogLog *hll = new HyperLogLog(10);
         Assert::That(hll != NULL);
         delete hll;
     }
 
-    It(basic)
+    It(estimate)
     {
-        HyperLogLog *hll = new HyperLogLog(10);
+        HyperLogLog *hll = new HyperLogLog(16);
         std::map <std::string, bool> unique;
-        for(size_t i = 0; i < 999; ++i){
+        size_t dataNum = 1000;
+        for(size_t i = 1; i < dataNum; ++i){
             std::string str;
             do {
                 genRandomString(10, str);
@@ -46,7 +47,7 @@ Describe(normal_pattern)
             hll->add(str.c_str(), str.size());
         }
         double cardinality = hll->estimate();
-        double errorRatio = abs(cardinality/1000);
+        double errorRatio = abs(dataNum - cardinality)/dataNum;
         Assert::That(errorRatio < 0.01);
     }
 };
