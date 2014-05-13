@@ -4,3 +4,6 @@
 [submodule "docs"]
 	path = docs
 	url = git@github.com:hideo55/cpp-HyperLogLog.git
+[submodule "extlib/igloo"]
+	path = extlib/igloo
+	url = https://github.com/joakimkarlsson/igloo.git
