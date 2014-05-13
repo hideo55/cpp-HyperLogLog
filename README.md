@@ -11,6 +11,8 @@ C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/F
 #include <iostream>
 #include "hyperloglog.hpp"
 
+using namespace hll;
+
 int main(){
     HyperLogLog hll(10);
     std::vector<string> somedata;
