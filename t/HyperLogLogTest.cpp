@@ -1,5 +1,5 @@
 #include <igloo/igloo_alt.h>
-#include "hyperloglog.hpp"
+#include "hyperloglog.h"
 #include <map>
 #include <string>
 #include <cstdlib>

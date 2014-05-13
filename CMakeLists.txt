@@ -13,7 +13,7 @@ SET(serial "1.0.0")
 
 SET(soserial "1")
 
-INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/src" extlib/igloo)
+INCLUDE_DIRECTORIES(include extlib/igloo)
 
 # Testing
 ENABLE_TESTING()

@@ -6,12 +6,14 @@ C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/F
 
 ## Usage
 
+HyperLoglog is a headers-only library so you just need to include "hyperloglog.h" and "murmur3.h" to use this project.
+
 ```C++
 
 #include <vector>
 #include <string>
 #include <iostream>
-#include "hyperloglog.hpp"
+#include "hyperloglog.h"
 
 using namespace hll;
 
@@ -42,6 +44,13 @@ http://hideo55.github.com/cpp-HyperLogLog/
 ## Author
 
 Hideaki Ohno <hide.o.j55{at}gmail.com>
+
+## Thanks to
+
+MurmurHash3([https://github.com/PeterScott/murmur3](https://github.com/PeterScott/murmur3))
+
+- Austin Appleby
+- Peter Scott
 
 ## License 
 
