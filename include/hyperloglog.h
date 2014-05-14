@@ -2,15 +2,17 @@
 #define HYPERLOGLOG_H
 
 /**
- * @file hyperloglog.hpp
+ * @file hyperloglog.h
  * @brief HyperLogLog cardinality estimator
  * @date Created 2013/3/20
  * @author Hideaki Ohno
  */
 
-#include<vector>
-#include<cmath>
-#include"murmur3.h"
+#include <vector>
+#include <cmath>
+#include <sstream>
+#include <stdexcept>
+#include "murmur3.h"
 
 #define HLL_HASH_SEED 313
 
@@ -30,10 +32,10 @@ public:
      *
      * @param[in] b_ bit width (register size will be pow(2,b_))
      */
-    HyperLogLog(uint8_t b_) :
-            b(b_), m(1 << b), M(m + 1, 0) {
+    HyperLogLog(uint8_t b) :
+            b_(b), m_(1 << b), M_(m_ + 1, 0) {
         double alpha;
-        switch (m) {
+        switch (m_) {
             case 16:
                 alpha = 0.673;
                 break;
@@ -44,9 +46,9 @@ public:
                 alpha = 0.709;
                 break;
             default:
-                alpha = 0.7213 / (1.0 + 1.079 / m);
+                alpha = 0.7213 / (1.0 + 1.079 / m_);
         }
-        alphaMM = alpha * m * m;
+        alphaMM_ = alpha * m_ * m_;
     }
 
     /**
@@ -58,10 +60,10 @@ public:
     void add(const char* str, uint32_t len) {
         uint32_t hash;
         MurmurHash3_x86_32(str, len, HLL_HASH_SEED, (void*) &hash);
-        uint32_t index = hash >> (32 - b);
-        uint8_t rank = rho((hash << b), 32 - b);
-        if (rank > M[index]) {
-            M[index] = rank;
+        uint32_t index = hash >> (32 - b_);
+        uint8_t rank = rho((hash << b_), 32 - b_);
+        if (rank > M_[index]) {
+            M_[index] = rank;
         }
     }
 
@@ -73,19 +75,19 @@ public:
     double estimate() {
         double estimate;
         double sum = 0.0;
-        for (uint32_t i = 0; i < m; i++) {
-            sum += 1.0 / pow(2.0, M[i]);
+        for (uint32_t i = 0; i < m_; i++) {
+            sum += 1.0 / pow(2.0, M_[i]);
         }
-        estimate = alphaMM / sum; // E in the original paper
-        if (estimate <= 2.5 * m) {
+        estimate = alphaMM_ / sum; // E in the original paper
+        if (estimate <= 2.5 * m_) {
             uint32_t zeros = 0;
-            for (uint32_t i = 0; i < m; i++) {
-                if (M[i] == 0) {
+            for (uint32_t i = 0; i < m_; i++) {
+                if (M_[i] == 0) {
                     zeros++;
                 }
             }
             if (zeros != 0) {
-                estimate = m * log((double) m / zeros);
+                estimate = m_ * log((double) m_ / zeros);
             }
         } else if (estimate > (1.0 / 30.0) * pow_2_32) {
             estimate = neg_pow_2_32 * log(1.0 - (estimate / pow_2_32));
@@ -93,11 +95,24 @@ public:
         return estimate;
     }
 
+    void merge(const HyperLogLog& other) {
+        if(m_ != other.m_){
+            std::stringstream ss;
+            ss << "number of registers doesn't match: " << m_ << " != " << other.m_;
+            throw std::runtime_error(ss.str().c_str());
+        }
+        for(int r = 0; r < m_; ++r){
+            if(M_[r] < other.M_[r]){
+                M_[r] = other.M_[r];
+            }
+        }
+    }
+
 private:
-    uint8_t b;     /// register bit width
-    uint32_t m;     /// register size
-    double alphaMM; /// alpha * m^2
-    std::vector<uint8_t> M;
+    uint8_t b_;     /// register bit width
+    uint32_t m_;     /// register size
+    double alphaMM_; /// alpha * m^2
+    std::vector<uint8_t> M_;
 
     uint8_t rho(uint32_t x, uint8_t b) {
         uint8_t v = 1;
