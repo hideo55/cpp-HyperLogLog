@@ -127,7 +127,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        alphaMM_ = alpha * m_ * m_;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7">   61</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7" title="Add element to the estimator.">add</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* str, uint32_t len) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7">   61</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7" title="Adds element to the estimator.">add</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* str, uint32_t len) {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        uint32_t hash;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="murmur3_8h.html#a37412933f308bda727603640d9acefba">MurmurHash3_x86_32</a>(str, len, <a class="code" href="hyperloglog_8h.html#a21231cbc051c73769ed18fc81ef83f49">HLL_HASH_SEED</a>, (<span class="keywordtype">void</span>*) &amp;hash);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        uint32_t index = hash &gt;&gt; (32 - b_);</div>
@@ -137,8 +137,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177">   76</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimate cardinality value.">estimate</a>() {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimate cardinality value.">estimate</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177">   76</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimates cardinality value.">estimate</a>() {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimates cardinality value.">estimate</a>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">double</span> sum = 0.0;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; m_; i++) {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            sum += 1.0 / pow(2.0, M_[i]);</div>
@@ -157,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (estimate &gt; (1.0 / 30.0) * pow_2_32) {</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            estimate = neg_pow_2_32 * log(1.0 - (estimate / pow_2_32));</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimate cardinality value.">estimate</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimates cardinality value.">estimate</a>;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
 <div class="line"><a name="l00105"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#a29f3a30637f51db53792293cbdd854d2">  105</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classhll_1_1_hyper_log_log.html#a29f3a30637f51db53792293cbdd854d2" title="Merges the estimate from &#39;other&#39; into this object, returning the estimate of their union...">merge</a>(<span class="keyword">const</span> <a class="code" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a>&amp; other) {</div>
@@ -173,7 +173,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#a66265cc0d8a73c2ab71daec10383dd45">  121</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classhll_1_1_hyper_log_log.html#a66265cc0d8a73c2ab71daec10383dd45" title="Clear all register.">clear</a>() {</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#a66265cc0d8a73c2ab71daec10383dd45">  121</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classhll_1_1_hyper_log_log.html#a66265cc0d8a73c2ab71daec10383dd45" title="Clears all internal registers.">clear</a>() {</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        std::fill(M_.begin(), M_.end(), 0);</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
@@ -204,7 +204,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 15 2014 03:20:33 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 15 2014 03:26:48 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

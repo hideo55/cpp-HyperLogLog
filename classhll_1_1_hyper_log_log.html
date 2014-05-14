@@ -103,16 +103,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a29392bbe10af3675869d76a0df06a370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a29392bbe10af3675869d76a0df06a370">More...</a><br/></td></tr>
 <tr class="separator:a29392bbe10af3675869d76a0df06a370"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb970cc924194ba4b4983d9bc1242ce7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7">add</a> (const char *str, uint32_t len)</td></tr>
-<tr class="memdesc:aeb970cc924194ba4b4983d9bc1242ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add element to the estimator.  <a href="#aeb970cc924194ba4b4983d9bc1242ce7">More...</a><br/></td></tr>
+<tr class="memdesc:aeb970cc924194ba4b4983d9bc1242ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds element to the estimator.  <a href="#aeb970cc924194ba4b4983d9bc1242ce7">More...</a><br/></td></tr>
 <tr class="separator:aeb970cc924194ba4b4983d9bc1242ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4fb03ba2d455613d4487dafd1d80177"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177">estimate</a> ()</td></tr>
-<tr class="memdesc:ac4fb03ba2d455613d4487dafd1d80177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estimate cardinality value.  <a href="#ac4fb03ba2d455613d4487dafd1d80177">More...</a><br/></td></tr>
+<tr class="memdesc:ac4fb03ba2d455613d4487dafd1d80177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estimates cardinality value.  <a href="#ac4fb03ba2d455613d4487dafd1d80177">More...</a><br/></td></tr>
 <tr class="separator:ac4fb03ba2d455613d4487dafd1d80177"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29f3a30637f51db53792293cbdd854d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a29f3a30637f51db53792293cbdd854d2">merge</a> (const <a class="el" href="classhll_1_1_hyper_log_log.html">HyperLogLog</a> &amp;other)</td></tr>
 <tr class="memdesc:a29f3a30637f51db53792293cbdd854d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merges the estimate from 'other' into this object, returning the estimate of their union.  <a href="#a29f3a30637f51db53792293cbdd854d2">More...</a><br/></td></tr>
 <tr class="separator:a29f3a30637f51db53792293cbdd854d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66265cc0d8a73c2ab71daec10383dd45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a66265cc0d8a73c2ab71daec10383dd45">clear</a> ()</td></tr>
-<tr class="memdesc:a66265cc0d8a73c2ab71daec10383dd45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all register.  <a href="#a66265cc0d8a73c2ab71daec10383dd45">More...</a><br/></td></tr>
+<tr class="memdesc:a66265cc0d8a73c2ab71daec10383dd45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all internal registers.  <a href="#a66265cc0d8a73c2ab71daec10383dd45">More...</a><br/></td></tr>
 <tr class="separator:a66265cc0d8a73c2ab71daec10383dd45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b832419b07fa9dcca1e993c4f6eb47f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a1b832419b07fa9dcca1e993c4f6eb47f">registerSize</a> () const </td></tr>
 <tr class="memdesc:a1b832419b07fa9dcca1e993c4f6eb47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns size of register.  <a href="#a1b832419b07fa9dcca1e993c4f6eb47f">More...</a><br/></td></tr>
@@ -190,7 +190,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Add element to the estimator. </p>
+<p>Adds element to the estimator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">str</td><td>string to add </td></tr>
@@ -224,7 +224,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Clear all register. </p>
+<p>Clears all internal registers. </p>
 
 <p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00121">121</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 
@@ -251,7 +251,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Estimate cardinality value. </p>
+<p>Estimates cardinality value. </p>
 <dl class="section return"><dt>Returns</dt><dd>Estimated cardinality value. </dd></dl>
 
 <p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00076">76</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
@@ -327,7 +327,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 15 2014 03:20:33 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 15 2014 03:26:48 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
