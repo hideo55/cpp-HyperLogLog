@@ -109,12 +109,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac4fb03ba2d455613d4487dafd1d80177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estimate cardinality value.  <a href="#ac4fb03ba2d455613d4487dafd1d80177">More...</a><br/></td></tr>
 <tr class="separator:ac4fb03ba2d455613d4487dafd1d80177"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29f3a30637f51db53792293cbdd854d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a29f3a30637f51db53792293cbdd854d2">merge</a> (const <a class="el" href="classhll_1_1_hyper_log_log.html">HyperLogLog</a> &amp;other)</td></tr>
+<tr class="memdesc:a29f3a30637f51db53792293cbdd854d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merges the estimate from 'other' into this object, returning the estimate of their union.  <a href="#a29f3a30637f51db53792293cbdd854d2">More...</a><br/></td></tr>
 <tr class="separator:a29f3a30637f51db53792293cbdd854d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66265cc0d8a73c2ab71daec10383dd45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a66265cc0d8a73c2ab71daec10383dd45">clear</a> ()</td></tr>
+<tr class="memdesc:a66265cc0d8a73c2ab71daec10383dd45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all register.  <a href="#a66265cc0d8a73c2ab71daec10383dd45">More...</a><br/></td></tr>
+<tr class="separator:a66265cc0d8a73c2ab71daec10383dd45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b832419b07fa9dcca1e993c4f6eb47f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a1b832419b07fa9dcca1e993c4f6eb47f">registerSize</a> () const </td></tr>
+<tr class="memdesc:a1b832419b07fa9dcca1e993c4f6eb47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns size of register.  <a href="#a1b832419b07fa9dcca1e993c4f6eb47f">More...</a><br/></td></tr>
+<tr class="separator:a1b832419b07fa9dcca1e993c4f6eb47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implement of '<a class="el" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a>' estimate cardinality algorithm. </p>
 
-<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00027">27</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00028">28</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a29392bbe10af3675869d76a0df06a370"></a>
 <div class="memitem">
@@ -146,7 +153,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00035">35</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00036">36</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 
 </div>
 </div>
@@ -192,7 +199,34 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00060">60</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00061">61</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a66265cc0d8a73c2ab71daec10383dd45"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hll::HyperLogLog::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clear all register. </p>
+
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00121">121</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 
 </div>
 </div>
@@ -220,7 +254,7 @@ Public Member Functions</h2></td></tr>
 <p>Estimate cardinality value. </p>
 <dl class="section return"><dt>Returns</dt><dd>Estimated cardinality value. </dd></dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00075">75</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00076">76</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 
 </div>
 </div>
@@ -246,7 +280,44 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00098">98</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
+<p>Merges the estimate from 'other' into this object, returning the estimate of their union. </p>
+<p>The number of registers in each must be the same.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other[in]</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00105">105</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1b832419b07fa9dcca1e993c4f6eb47f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t hll::HyperLogLog::registerSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns size of register. </p>
+<dl class="section return"><dt>Returns</dt><dd>Register size </dd></dl>
+
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00130">130</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 
 </div>
 </div>
@@ -256,7 +327,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 15 2014 02:36:53 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 15 2014 03:20:33 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
