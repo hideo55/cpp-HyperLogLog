@@ -12,6 +12,7 @@
 #include <cmath>
 #include <sstream>
 #include <stdexcept>
+#include <algorithm>
 #include "murmur3.h"
 
 #define HLL_HASH_SEED 313
@@ -95,6 +96,12 @@ public:
         return estimate;
     }
 
+    /**
+     * Merges the estimate from 'other' into this object, returning the estimate of their union.
+     * The number of registers in each must be the same.
+     *
+     * @param other[in]
+     */
     void merge(const HyperLogLog& other) {
         if(m_ != other.m_){
             std::stringstream ss;
@@ -106,6 +113,22 @@ public:
                 M_[r] = other.M_[r];
             }
         }
+    }
+
+    /**
+     * Clear all register.
+     */
+    void clear() {
+        std::fill(M_.begin(), M_.end(), 0);
+    }
+
+    /**
+     * Returns size of register.
+     *
+     * @return Register size
+     */
+    uint32_t registerSize() const {
+        return m_;
     }
 
 private:

@@ -37,42 +37,67 @@ Describe(hll_HyperLogLog) {
         delete hll;
     }
 
+    It(register_size) {
+        HyperLogLog *hll = new HyperLogLog(10);
+        Assert::That(hll->registerSize(), Equals(pow(2, 10)));
+        delete hll;
+
+        hll = new HyperLogLog(16);
+        Assert::That(hll->registerSize(), Equals(pow(2, 16)));
+        delete hll;
+    }
+
     It(estimate) {
         for (int n = 0; n < 10; ++n) {
             HyperLogLog *hll = new HyperLogLog(16);
-            size_t dataNum = 1000;
+            size_t dataNum = 500;
             for (int i = 1; i < dataNum; ++i) {
                 std::string str;
                 getUniqueString(str);
                 hll->add(str.c_str(), str.size());
             }
             double cardinality = hll->estimate();
+            delete hll;
             double errorRatio = abs(dataNum - cardinality) / dataNum;
             Assert::That(errorRatio, IsLessThan(0.01));
         }
     }
 
     It(merge) {
-            HyperLogLog *hll = new HyperLogLog(16);
-            size_t dataNum = 1000;
-            for (int i = 1; i < dataNum; ++i) {
-                std::string str;
-                getUniqueString(str);
-                hll->add(str.c_str(), str.size());
-            }
+        HyperLogLog *hll = new HyperLogLog(16);
+        size_t dataNum = 100;
+        for (int i = 1; i < dataNum; ++i) {
+            std::string str;
+            getUniqueString(str);
+            hll->add(str.c_str(), str.size());
+        }
 
-            HyperLogLog *hll2 = new HyperLogLog(16);
-            size_t dataNum2 = 200;
-            for (int i = 1; i < dataNum2; ++i) {
-                std::string str;
-                getUniqueString(str);
-                hll2->add(str.c_str(), str.size());
-            }
+        HyperLogLog *hll2 = new HyperLogLog(16);
+        size_t dataNum2 = 200;
+        for (int i = 1; i < dataNum2; ++i) {
+            std::string str;
+            getUniqueString(str);
+            hll2->add(str.c_str(), str.size());
+        }
 
-            hll->merge(*hll2);
-            double cardinality = hll->estimate();
-            double errorRatio = abs(dataNum + dataNum2 - cardinality) / (dataNum + dataNum2);
-            Assert::That(errorRatio, IsLessThan(0.01));
+        hll->merge(*hll2);
+        double cardinality = hll->estimate();
+        delete hll;
+        delete hll2;
+        double errorRatio = abs(dataNum + dataNum2 - cardinality) / (dataNum + dataNum2);
+        Assert::That(errorRatio, IsLessThan(0.01));
+    }
+
+    It(clear){
+        HyperLogLog *hll = new HyperLogLog(16);
+        size_t dataNum = 100;
+        for (int i = 1; i < dataNum; ++i) {
+            std::string str;
+            getUniqueString(str);
+            hll->add(str.c_str(), str.size());
+        }
+        hll->clear();
+        Assert::That(hll->estimate(), Equals(0.0f));
     }
 };
 
