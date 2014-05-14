@@ -137,8 +137,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177">   76</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimates cardinality value.">estimate</a>() {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimates cardinality value.">estimate</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#aaa9d7dd08722a22ecbf3e48ed6720358">   76</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#aaa9d7dd08722a22ecbf3e48ed6720358" title="Estimates cardinality value.">estimate</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classhll_1_1_hyper_log_log.html#aaa9d7dd08722a22ecbf3e48ed6720358" title="Estimates cardinality value.">estimate</a>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">double</span> sum = 0.0;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">for</span> (uint32_t i = 0; i &lt; m_; i++) {</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            sum += 1.0 / pow(2.0, M_[i]);</div>
@@ -157,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (estimate &gt; (1.0 / 30.0) * pow_2_32) {</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            estimate = neg_pow_2_32 * log(1.0 - (estimate / pow_2_32));</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177" title="Estimates cardinality value.">estimate</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classhll_1_1_hyper_log_log.html#aaa9d7dd08722a22ecbf3e48ed6720358" title="Estimates cardinality value.">estimate</a>;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
 <div class="line"><a name="l00105"></a><span class="lineno"><a class="code" href="classhll_1_1_hyper_log_log.html#a29f3a30637f51db53792293cbdd854d2">  105</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classhll_1_1_hyper_log_log.html#a29f3a30637f51db53792293cbdd854d2" title="Merges the estimate from &#39;other&#39; into this object, returning the estimate of their union...">merge</a>(<span class="keyword">const</span> <a class="code" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a>&amp; other) {</div>
@@ -204,7 +204,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 15 2014 03:26:48 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 15 2014 07:39:51 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

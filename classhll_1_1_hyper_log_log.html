@@ -105,9 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb970cc924194ba4b4983d9bc1242ce7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7">add</a> (const char *str, uint32_t len)</td></tr>
 <tr class="memdesc:aeb970cc924194ba4b4983d9bc1242ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds element to the estimator.  <a href="#aeb970cc924194ba4b4983d9bc1242ce7">More...</a><br/></td></tr>
 <tr class="separator:aeb970cc924194ba4b4983d9bc1242ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4fb03ba2d455613d4487dafd1d80177"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177">estimate</a> ()</td></tr>
-<tr class="memdesc:ac4fb03ba2d455613d4487dafd1d80177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estimates cardinality value.  <a href="#ac4fb03ba2d455613d4487dafd1d80177">More...</a><br/></td></tr>
-<tr class="separator:ac4fb03ba2d455613d4487dafd1d80177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9d7dd08722a22ecbf3e48ed6720358"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#aaa9d7dd08722a22ecbf3e48ed6720358">estimate</a> () const </td></tr>
+<tr class="memdesc:aaa9d7dd08722a22ecbf3e48ed6720358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estimates cardinality value.  <a href="#aaa9d7dd08722a22ecbf3e48ed6720358">More...</a><br/></td></tr>
+<tr class="separator:aaa9d7dd08722a22ecbf3e48ed6720358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29f3a30637f51db53792293cbdd854d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a29f3a30637f51db53792293cbdd854d2">merge</a> (const <a class="el" href="classhll_1_1_hyper_log_log.html">HyperLogLog</a> &amp;other)</td></tr>
 <tr class="memdesc:a29f3a30637f51db53792293cbdd854d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merges the estimate from 'other' into this object, returning the estimate of their union.  <a href="#a29f3a30637f51db53792293cbdd854d2">More...</a><br/></td></tr>
 <tr class="separator:a29f3a30637f51db53792293cbdd854d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,7 +230,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac4fb03ba2d455613d4487dafd1d80177"></a>
+<a class="anchor" id="aaa9d7dd08722a22ecbf3e48ed6720358"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -241,7 +241,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">double hll::HyperLogLog::estimate </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -284,7 +284,7 @@ Public Member Functions</h2></td></tr>
 <p>The number of registers in each must be the same.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other[in]</td><td></td></tr>
+    <tr><td class="paramname">other[in]</td><td><a class="el" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a> instance to be merged </td></tr>
   </table>
   </dd>
 </dl>
@@ -327,7 +327,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 15 2014 03:26:48 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 15 2014 07:39:51 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
