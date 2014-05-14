@@ -53,7 +53,7 @@ public:
     }
 
     /**
-     * Add element to the estimator
+     * Adds element to the estimator
      *
      * @param[in] str string to add
      * @param[in] len length of string
@@ -69,7 +69,7 @@ public:
     }
 
     /**
-     * Estimate cardinality value.
+     * Estimates cardinality value.
      *
      * @return Estimated cardinality value.
      */
@@ -116,7 +116,7 @@ public:
     }
 
     /**
-     * Clear all register.
+     * Clears all internal registers.
      */
     void clear() {
         std::fill(M_.begin(), M_.end(), 0);
