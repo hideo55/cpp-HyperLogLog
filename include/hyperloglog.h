@@ -73,7 +73,7 @@ public:
      *
      * @return Estimated cardinality value.
      */
-    double estimate() {
+    double estimate() const {
         double estimate;
         double sum = 0.0;
         for (uint32_t i = 0; i < m_; i++) {
@@ -100,7 +100,7 @@ public:
      * Merges the estimate from 'other' into this object, returning the estimate of their union.
      * The number of registers in each must be the same.
      *
-     * @param other[in]
+     * @param other[in] HyperLogLog instance to be merged
      */
     void merge(const HyperLogLog& other) {
         if(m_ != other.m_){
