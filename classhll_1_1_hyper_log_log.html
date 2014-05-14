@@ -95,26 +95,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Implement of '<a class="el" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a>' estimate cardinality algorithm.  
  <a href="classhll_1_1_hyper_log_log.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa156090ff40e2050a5f14a80491bfe31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#aa156090ff40e2050a5f14a80491bfe31">HyperLogLog</a> (uint8_t b_)</td></tr>
-<tr class="memdesc:aa156090ff40e2050a5f14a80491bfe31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#aa156090ff40e2050a5f14a80491bfe31">More...</a><br/></td></tr>
-<tr class="separator:aa156090ff40e2050a5f14a80491bfe31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29392bbe10af3675869d76a0df06a370"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a29392bbe10af3675869d76a0df06a370">HyperLogLog</a> (uint8_t b)</td></tr>
+<tr class="memdesc:a29392bbe10af3675869d76a0df06a370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a29392bbe10af3675869d76a0df06a370">More...</a><br/></td></tr>
+<tr class="separator:a29392bbe10af3675869d76a0df06a370"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb970cc924194ba4b4983d9bc1242ce7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7">add</a> (const char *str, uint32_t len)</td></tr>
 <tr class="memdesc:aeb970cc924194ba4b4983d9bc1242ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add element to the estimator.  <a href="#aeb970cc924194ba4b4983d9bc1242ce7">More...</a><br/></td></tr>
 <tr class="separator:aeb970cc924194ba4b4983d9bc1242ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4fb03ba2d455613d4487dafd1d80177"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#ac4fb03ba2d455613d4487dafd1d80177">estimate</a> ()</td></tr>
 <tr class="memdesc:ac4fb03ba2d455613d4487dafd1d80177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estimate cardinality value.  <a href="#ac4fb03ba2d455613d4487dafd1d80177">More...</a><br/></td></tr>
 <tr class="separator:ac4fb03ba2d455613d4487dafd1d80177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29f3a30637f51db53792293cbdd854d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a29f3a30637f51db53792293cbdd854d2">merge</a> (const <a class="el" href="classhll_1_1_hyper_log_log.html">HyperLogLog</a> &amp;other)</td></tr>
+<tr class="separator:a29f3a30637f51db53792293cbdd854d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implement of '<a class="el" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a>' estimate cardinality algorithm. </p>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00025">25</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00027">27</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aa156090ff40e2050a5f14a80491bfe31"></a>
+<a class="anchor" id="a29392bbe10af3675869d76a0df06a370"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -125,7 +127,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">hll::HyperLogLog::HyperLogLog </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>b_</em></td><td>)</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -144,7 +146,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00033">33</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00035">35</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 
 </div>
 </div>
@@ -190,7 +192,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00058">58</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00060">60</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 
 </div>
 </div>
@@ -218,17 +220,43 @@ Public Member Functions</h2></td></tr>
 <p>Estimate cardinality value. </p>
 <dl class="section return"><dt>Returns</dt><dd>Estimated cardinality value. </dd></dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00073">73</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00075">75</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a29f3a30637f51db53792293cbdd854d2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hll::HyperLogLog::merge </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classhll_1_1_hyper_log_log.html">HyperLogLog</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hyperloglog_8h_source.html#l00098">98</a> of file <a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a></li>
+<li>include/<a class="el" href="hyperloglog_8h_source.html">hyperloglog.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed May 14 2014 01:26:59 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 15 2014 02:36:53 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
