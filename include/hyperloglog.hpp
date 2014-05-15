@@ -19,6 +19,9 @@
 
 namespace hll {
 
+static const double pow_2_32 = 4294967296.0;        ///< 2^32
+static const double neg_pow_2_32 = -4294967296.0;   ///< -(2^32)
+
 /** @class HyperLogLog
  *  @brief Implement of 'HyperLogLog' estimate cardinality algorithm
  */
@@ -139,9 +142,6 @@ public:
     }
 
 private:
-    static const double pow_2_32 = 4294967296.0;
-    static const double neg_pow_2_32 = -4294967296.0;
-
     uint8_t b_;     /// register bit width
     uint32_t m_;     /// register size
     double alphaMM_; /// alpha * m^2

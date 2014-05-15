@@ -72,15 +72,14 @@ Describe(hll_HyperLogLog) {
 
     It(estimate_cardinality) {
         for (int n = 0; n < 10; ++n) {
-            HyperLogLog *hll = new HyperLogLog(16);
+            HyperLogLog hll(16);
             size_t dataNum = 500;
             for (int i = 1; i < dataNum; ++i) {
                 std::string str;
                 getUniqueString(str);
-                hll->add(str.c_str(), str.size());
+                hll.add(str.c_str(), str.size());
             }
-            double cardinality = hll->estimate();
-            delete hll;
+            double cardinality = hll.estimate();
             double errorRatio = abs(dataNum - cardinality) / dataNum;
             Assert::That(errorRatio, IsLessThan(0.01));
         }
@@ -119,16 +118,16 @@ Describe(hll_HyperLogLog) {
     };
 
     It(clear_register){
-        HyperLogLog *hll = new HyperLogLog(16);
+        HyperLogLog hll(16);
         size_t dataNum = 100;
         for (int i = 1; i < dataNum; ++i) {
             std::string str;
             getUniqueString(str);
-            hll->add(str.c_str(), str.size());
+            hll.add(str.c_str(), str.size());
         }
-        Assert::That(hll->estimate(), !Equals(0.0f));
-        hll->clear();
-        Assert::That(hll->estimate(), Equals(0.0f));
+        Assert::That(hll.estimate(), !Equals(0.0f));
+        hll.clear();
+        Assert::That(hll.estimate(), Equals(0.0f));
     }
 };
 
