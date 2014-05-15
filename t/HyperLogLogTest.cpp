@@ -9,30 +9,30 @@ using namespace hll;
 
 
 namespace {
-	// Test utilities
+    // Test utilities
 
-	static const char alphanum[] = "0123456789"
-    	    "!@#$%^&*"
-        	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        	"abcdefghijklmnopqrstuvwxyz";
+    static const char alphanum[] = "0123456789"
+            "!@#$%^&*"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz";
 
-	static const int alphanumSize = sizeof(alphanum) - 1;
+    static const int alphanumSize = sizeof(alphanum) - 1;
 
-	static void genRandomString(size_t len, std::string& str) {
-    	srand(time(0));
-    	for (size_t i = 0; i < len; ++i) {
-        	char c = alphanum[rand() % alphanumSize];
-        	str.append(&c, 1);
-    	}
-	}
+    static void genRandomString(size_t len, std::string& str) {
+        srand(time(0));
+        for (size_t i = 0; i < len; ++i) {
+            char c = alphanum[rand() % alphanumSize];
+            str.append(&c, 1);
+        }
+    }
 
-	static std::map<std::string, bool> GEN_STRINGS;
-	static void getUniqueString(std::string& str) {
-    	do {
-        	genRandomString(10, str);
-    	} while (GEN_STRINGS.find(str) != GEN_STRINGS.end());
-    	GEN_STRINGS.insert(std::make_pair(str, true));
-	}
+    static std::map<std::string, bool> GEN_STRINGS;
+    static void getUniqueString(std::string& str) {
+        do {
+            genRandomString(10, str);
+        } while (GEN_STRINGS.find(str) != GEN_STRINGS.end());
+        GEN_STRINGS.insert(std::make_pair(str, true));
+    }
 }
 
 Describe(hll_HyperLogLog) {
@@ -47,7 +47,7 @@ Describe(hll_HyperLogLog) {
 
         AssertThrows(std::invalid_argument, HyperLogLog(3));
         Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("bit width must be in the range [4,16]"));
-		
+
         AssertThrows(std::invalid_argument, HyperLogLog(17));
         Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("bit width must be in the range [4,16]"));
     }
