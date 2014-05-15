@@ -36,23 +36,31 @@ namespace {
 }
 
 Describe(hll_HyperLogLog) {
-    It(create_instance) {
-        HyperLogLog *hll = new HyperLogLog(4);
-        Assert::That(hll != NULL);
-        delete hll;
+    Describe(create_instance) {
+        It(pass_minimum_arugment_in_range) {
+            HyperLogLog *hll = new HyperLogLog(4);
+            Assert::That(hll != NULL);
+            delete hll;
+        }
+    
+        It(pass_maximum_argument_in_range) {
+            HyperLogLog *hll = new HyperLogLog(16);
+            Assert::That(hll != NULL);
+            delete hll;
+        }
 
-        hll = new HyperLogLog(16);
-        Assert::That(hll != NULL);
-        delete hll;
+        It(pass_out_of_range_argument_min) {
+            AssertThrows(std::invalid_argument, HyperLogLog(3));
+            Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("bit width must be in the range [4,16]"));
+        }
 
-        AssertThrows(std::invalid_argument, HyperLogLog(3));
-        Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("bit width must be in the range [4,16]"));
+        It(pass_out_of_range_argument_max) {    
+            AssertThrows(std::invalid_argument, HyperLogLog(17));
+            Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("bit width must be in the range [4,16]"));
+        }
+    };
 
-        AssertThrows(std::invalid_argument, HyperLogLog(17));
-        Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("bit width must be in the range [4,16]"));
-    }
-
-    It(register_size) {
+    It(get_register_size) {
         HyperLogLog *hll = new HyperLogLog(10);
         Assert::That(hll->registerSize(), Equals(pow(2, 10)));
         delete hll;
@@ -62,7 +70,7 @@ Describe(hll_HyperLogLog) {
         delete hll;
     }
 
-    It(estimate) {
+    It(estimate_cardinality) {
         for (int n = 0; n < 10; ++n) {
             HyperLogLog *hll = new HyperLogLog(16);
             size_t dataNum = 500;
@@ -78,34 +86,39 @@ Describe(hll_HyperLogLog) {
         }
     }
 
-    It(merge) {
-        HyperLogLog hll(16);
-        size_t dataNum = 100;
-        for (int i = 1; i < dataNum; ++i) {
-            std::string str;
-            getUniqueString(str);
-            hll.add(str.c_str(), str.size());
+    Describe(merge) {
+        It(merge_registers){
+            HyperLogLog hll(16);
+            size_t dataNum = 100;
+            for (int i = 1; i < dataNum; ++i) {
+                std::string str;
+                getUniqueString(str);
+                hll.add(str.c_str(), str.size());
+            }
+
+            HyperLogLog hll2(16);
+            size_t dataNum2 = 200;
+            for (int i = 1; i < dataNum2; ++i) {
+                std::string str;
+                getUniqueString(str);
+                hll2.add(str.c_str(), str.size());
+            }
+
+            hll.merge(hll2);
+            double cardinality = hll.estimate();
+            double errorRatio = abs(dataNum + dataNum2 - cardinality) / (dataNum + dataNum2);
+            Assert::That(errorRatio, IsLessThan(0.01));
         }
 
-        HyperLogLog hll2(16);
-        size_t dataNum2 = 200;
-        for (int i = 1; i < dataNum2; ++i) {
-            std::string str;
-            getUniqueString(str);
-            hll2.add(str.c_str(), str.size());
+        It(merge_size_unmatched_registers){
+            HyperLogLog hll(16);
+            HyperLogLog hll2(10);
+            AssertThrows(std::invalid_argument, hll.merge(hll2));
+            Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("number of registers doesn't match:"));
         }
+    };
 
-        hll.merge(hll2);
-        double cardinality = hll.estimate();
-        double errorRatio = abs(dataNum + dataNum2 - cardinality) / (dataNum + dataNum2);
-        Assert::That(errorRatio, IsLessThan(0.01));
-
-        HyperLogLog hll3(10);
-        AssertThrows(std::invalid_argument, hll.merge(hll3));
-        Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("number of registers doesn't match:"));
-    }
-
-    It(clear){
+    It(clear_register){
         HyperLogLog *hll = new HyperLogLog(16);
         size_t dataNum = 100;
         for (int i = 1; i < dataNum; ++i) {
@@ -113,6 +126,7 @@ Describe(hll_HyperLogLog) {
             getUniqueString(str);
             hll->add(str.c_str(), str.size());
         }
+        Assert::That(hll->estimate(), !Equals(0.0f));
         hll->clear();
         Assert::That(hll->estimate(), Equals(0.0f));
     }
