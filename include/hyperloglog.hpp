@@ -1,8 +1,8 @@
-#if !defined(HYPERLOGLOG_H)
-#define HYPERLOGLOG_H
+#if !defined(HYPERLOGLOG_HPP)
+#define HYPERLOGLOG_HPP
 
 /**
- * @file hyperloglog.h
+ * @file hyperloglog.hpp
  * @brief HyperLogLog cardinality estimator
  * @date Created 2013/3/20
  * @author Hideaki Ohno
@@ -19,9 +19,6 @@
 
 namespace hll {
 
-static const double pow_2_32 = 4294967296.0;
-static const double neg_pow_2_32 = -4294967296.0;
-
 /** @class HyperLogLog
  *  @brief Implement of 'HyperLogLog' estimate cardinality algorithm
  */
@@ -31,10 +28,18 @@ public:
     /**
      * Constructor
      *
-     * @param[in] b_ bit width (register size will be pow(2,b_))
+     * @param b[in] bit width (register size will be 2 to the b power). 
+	 *            This value must be in the range[4,16].
+	 * 
+	 * @exception std::invalid_argument the argument is out of range.
      */
-    HyperLogLog(uint8_t b) :
+    HyperLogLog(uint8_t b) throw(std::invalid_argument) :
             b_(b), m_(1 << b), M_(m_ + 1, 0) {
+            	
+        if( b < 4 || 16 < b ){
+            throw std::invalid_argument("bit width must be in the range [4,16]");
+        }
+        
         double alpha;
         switch (m_) {
             case 16:
@@ -55,8 +60,8 @@ public:
     /**
      * Adds element to the estimator
      *
-     * @param[in] str string to add
-     * @param[in] len length of string
+     * @param str[in] string to add
+     * @param len[in] length of string
      */
     void add(const char* str, uint32_t len) {
         uint32_t hash;
@@ -101,12 +106,14 @@ public:
      * The number of registers in each must be the same.
      *
      * @param other[in] HyperLogLog instance to be merged
+     * 
+     * @exception std::invalid_argument number of registers doesn't match.
      */
-    void merge(const HyperLogLog& other) {
+    void merge(const HyperLogLog& other) throw(std::invalid_argument) {
         if(m_ != other.m_){
             std::stringstream ss;
             ss << "number of registers doesn't match: " << m_ << " != " << other.m_;
-            throw std::runtime_error(ss.str().c_str());
+            throw std::invalid_argument(ss.str().c_str());
         }
         for(int r = 0; r < m_; ++r){
             if(M_[r] < other.M_[r]){
@@ -132,6 +139,9 @@ public:
     }
 
 private:
+    static const double pow_2_32 = 4294967296.0;
+    static const double neg_pow_2_32 = -4294967296.0;
+
     uint8_t b_;     /// register bit width
     uint32_t m_;     /// register size
     double alphaMM_; /// alpha * m^2
@@ -150,4 +160,4 @@ private:
 
 } // namespace hll
 
-#endif // !defined(HYPERLOGLOG_H)
+#endif // !defined(HYPERLOGLOG_HPP)
