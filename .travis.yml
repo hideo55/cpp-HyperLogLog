@@ -2,5 +2,7 @@ language: cpp
 compiler:
   - clang
   - gcc
+os:
+  - linux
+  - osx
 script: cmake ./CMakeLists.txt && make && make test
-
