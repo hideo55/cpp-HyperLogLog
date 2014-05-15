@@ -28,7 +28,7 @@ public:
     /**
      * Constructor
      *
-     * @param b[in] bit width (register size will be 2 to the b power). 
+     * @param[in] b bit width (register size will be 2 to the b power).
 	 *            This value must be in the range[4,16].
 	 * 
 	 * @exception std::invalid_argument the argument is out of range.
@@ -60,8 +60,8 @@ public:
     /**
      * Adds element to the estimator
      *
-     * @param str[in] string to add
-     * @param len[in] length of string
+     * @param[in] str string to add
+     * @param[in] len length of string
      */
     void add(const char* str, uint32_t len) {
         uint32_t hash;
@@ -105,7 +105,7 @@ public:
      * Merges the estimate from 'other' into this object, returning the estimate of their union.
      * The number of registers in each must be the same.
      *
-     * @param other[in] HyperLogLog instance to be merged
+     * @param[in] other HyperLogLog instance to be merged
      * 
      * @exception std::invalid_argument number of registers doesn't match.
      */
