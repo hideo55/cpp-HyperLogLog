@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hideo55/cpp-HyperLogLog.png?branch=master)](https://travis-ci.org/hideo55/cpp-HyperLogLog)
+[![Build Status](https://travis-ci.org/hideo55/cpp-HyperLogLog.svg?branch=master)](https://travis-ci.org/hideo55/cpp-HyperLogLog)
 
 # HyperLoglog
 
