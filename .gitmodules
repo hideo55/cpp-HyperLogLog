@@ -4,3 +4,6 @@
 [submodule "extlib/igloo"]
 	path = extlib/igloo
 	url = https://github.com/joakimkarlsson/igloo.git
+[submodule "extlib/igloo-TapTestListener"]
+	path = extlib/igloo-TapTestListener
+	url = https://github.com/hideo55/igloo-TapTestListener.git

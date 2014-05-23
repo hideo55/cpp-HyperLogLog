@@ -13,7 +13,7 @@ SET(serial "1.0.0")
 
 SET(soserial "1")
 
-INCLUDE_DIRECTORIES(include extlib/igloo)
+INCLUDE_DIRECTORIES(include extlib/igloo extlib/igloo-TapTestListener)
 
 # Testing
 ENABLE_TESTING()

@@ -1,4 +1,5 @@
 #include <igloo/igloo_alt.h>
+#include <igloo/TapTestListener.h>
 #include "hyperloglog.hpp"
 #include <map>
 #include <string>
@@ -7,32 +8,31 @@
 using namespace igloo;
 using namespace hll;
 
-
 namespace {
-    // Test utilities
+// Test utilities
 
-    static const char alphanum[] = "0123456789"
-            "!@#$%^&*"
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            "abcdefghijklmnopqrstuvwxyz";
+static const char alphanum[] = "0123456789"
+        "!@#$%^&*"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
 
-    static const int alphanumSize = sizeof(alphanum) - 1;
+static const int alphanumSize = sizeof(alphanum) - 1;
 
-    static void genRandomString(size_t len, std::string& str) {
-        srand(time(0));
-        for (size_t i = 0; i < len; ++i) {
-            char c = alphanum[rand() % alphanumSize];
-            str.append(&c, 1);
-        }
+static void genRandomString(size_t len, std::string& str) {
+    srand(time(0));
+    for (size_t i = 0; i < len; ++i) {
+        char c = alphanum[rand() % alphanumSize];
+        str.append(&c, 1);
     }
+}
 
-    static std::map<std::string, bool> GEN_STRINGS;
-    static void getUniqueString(std::string& str) {
-        do {
-            genRandomString(10, str);
-        } while (GEN_STRINGS.find(str) != GEN_STRINGS.end());
-        GEN_STRINGS.insert(std::make_pair(str, true));
-    }
+static std::map<std::string, bool> GEN_STRINGS;
+static void getUniqueString(std::string& str) {
+    do {
+        genRandomString(10, str);
+    } while (GEN_STRINGS.find(str) != GEN_STRINGS.end());
+    GEN_STRINGS.insert(std::make_pair(str, true));
+}
 }
 
 Describe(hll_HyperLogLog) {
@@ -42,7 +42,7 @@ Describe(hll_HyperLogLog) {
             Assert::That(hll != NULL);
             delete hll;
         }
-    
+
         It(pass_maximum_argument_in_range) {
             HyperLogLog *hll = new HyperLogLog(16);
             Assert::That(hll != NULL);
@@ -51,12 +51,14 @@ Describe(hll_HyperLogLog) {
 
         It(pass_out_of_range_argument_min) {
             AssertThrows(std::invalid_argument, HyperLogLog(3));
-            Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("bit width must be in the range [4,16]"));
+            Assert::That(LastException<std::invalid_argument>().what(),
+                    Is().Containing("bit width must be in the range [4,16]"));
         }
 
-        It(pass_out_of_range_argument_max) {    
+        It(pass_out_of_range_argument_max) {
             AssertThrows(std::invalid_argument, HyperLogLog(17));
-            Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("bit width must be in the range [4,16]"));
+            Assert::That(LastException<std::invalid_argument>().what(),
+                    Is().Containing("bit width must be in the range [4,16]"));
         }
     };
 
@@ -86,7 +88,7 @@ Describe(hll_HyperLogLog) {
     }
 
     Describe(merge) {
-        It(merge_registers){
+        It(merge_registers) {
             HyperLogLog hll(16);
             size_t dataNum = 100;
             for (int i = 1; i < dataNum; ++i) {
@@ -109,15 +111,16 @@ Describe(hll_HyperLogLog) {
             Assert::That(errorRatio, IsLessThan(0.01));
         }
 
-        It(merge_size_unmatched_registers){
+        It(merge_size_unmatched_registers) {
             HyperLogLog hll(16);
             HyperLogLog hll2(10);
             AssertThrows(std::invalid_argument, hll.merge(hll2));
-            Assert::That(LastException<std::invalid_argument>().what(), Is().Containing("number of registers doesn't match:"));
+            Assert::That(LastException<std::invalid_argument>().what(),
+                    Is().Containing("number of registers doesn't match:"));
         }
     };
 
-    It(clear_register){
+    It(clear_register) {
         HyperLogLog hll(16);
         size_t dataNum = 100;
         for (int i = 1; i < dataNum; ++i) {
@@ -131,7 +134,13 @@ Describe(hll_HyperLogLog) {
     }
 };
 
-int main(int argc, const char* argv[]) {
-    return TestRunner::RunAllTests(argc, argv);
+int main() {
+    DefaultTestResultsOutput output;
+    TestRunner runner(output);
+
+    TapTestListener listener;
+    runner.AddListener(&listener);
+
+    runner.Run();
 }
 
