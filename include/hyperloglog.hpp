@@ -19,8 +19,8 @@
 
 namespace hll {
 
-static const double pow_2_32 = 4294967296.0;        ///< 2^32
-static const double neg_pow_2_32 = -4294967296.0;   ///< -(2^32)
+static const double pow_2_32 = 4294967296.0; ///< 2^32
+static const double neg_pow_2_32 = -4294967296.0; ///< -(2^32)
 
 /** @class HyperLogLog
  *  @brief Implement of 'HyperLogLog' estimate cardinality algorithm
@@ -32,17 +32,17 @@ public:
      * Constructor
      *
      * @param[in] b bit width (register size will be 2 to the b power).
-	 *            This value must be in the range[4,16].
-	 * 
-	 * @exception std::invalid_argument the argument is out of range.
+     *            This value must be in the range[4,16].
+     *
+     * @exception std::invalid_argument the argument is out of range.
      */
-    HyperLogLog(uint8_t b) throw(std::invalid_argument) :
+    HyperLogLog(uint8_t b) throw (std::invalid_argument) :
             b_(b), m_(1 << b), M_(m_ + 1, 0) {
-            	
-        if( b < 4 || 16 < b ){
+
+        if (b < 4 || 16 < b) {
             throw std::invalid_argument("bit width must be in the range [4,16]");
         }
-        
+
         double alpha;
         switch (m_) {
             case 16:
@@ -113,14 +113,14 @@ public:
      * 
      * @exception std::invalid_argument number of registers doesn't match.
      */
-    void merge(const HyperLogLog& other) throw(std::invalid_argument) {
-        if(m_ != other.m_){
+    void merge(const HyperLogLog& other) throw (std::invalid_argument) {
+        if (m_ != other.m_) {
             std::stringstream ss;
             ss << "number of registers doesn't match: " << m_ << " != " << other.m_;
             throw std::invalid_argument(ss.str().c_str());
         }
-        for(int r = 0; r < m_; ++r){
-            if(M_[r] < other.M_[r]){
+        for (int r = 0; r < m_; ++r) {
+            if (M_[r] < other.M_[r]) {
                 M_[r] = other.M_[r];
             }
         }
@@ -131,6 +131,7 @@ public:
      */
     void clear() {
         std::fill(M_.begin(), M_.end(), 0);
+        c_ = 0;
     }
 
     /**
@@ -143,10 +144,10 @@ public:
     }
 
 private:
-    uint8_t b_;     /// register bit width
-    uint32_t m_;     /// register size
-    double alphaMM_; /// alpha * m^2
-    std::vector<uint8_t> M_;    ///< registers
+    uint8_t b_; ///< register bit width
+    uint32_t m_; ///< register size
+    double alphaMM_; ///< alpha * m^2
+    std::vector<uint8_t> M_; ///< registers
 
     uint8_t rho(uint32_t x, uint8_t b) {
         uint8_t v = 1;

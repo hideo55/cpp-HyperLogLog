@@ -109,7 +109,7 @@ Describe(hll_HyperLogLog) {
 
             hll.merge(hll2);
             double cardinality = hll.estimate();
-            double errorRatio = abs(dataNum + dataNum2 - cardinality) / (dataNum + dataNum2);
+            double errorRatio = fabs(dataNum + dataNum2 - cardinality) / (dataNum + dataNum2);
             Assert::That(errorRatio, IsLessThan(0.01));
         }
 
