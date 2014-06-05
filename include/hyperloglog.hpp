@@ -131,7 +131,6 @@ public:
      */
     void clear() {
         std::fill(M_.begin(), M_.end(), 0);
-        c_ = 0;
     }
 
     /**
