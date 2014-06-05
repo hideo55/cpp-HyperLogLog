@@ -5,6 +5,8 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
+#include <iomanip>
 using namespace igloo;
 using namespace hll;
 
@@ -82,7 +84,7 @@ Describe(hll_HyperLogLog) {
                 hll.add(str.c_str(), str.size());
             }
             double cardinality = hll.estimate();
-            double errorRatio = abs(dataNum - cardinality) / dataNum;
+            double errorRatio = fabs(dataNum - cardinality) / dataNum;
             Assert::That(errorRatio, IsLessThan(0.01));
         }
     }

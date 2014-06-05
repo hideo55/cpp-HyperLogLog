@@ -56,6 +56,7 @@ public:
                 break;
             default:
                 alpha = 0.7213 / (1.0 + 1.079 / m_);
+                break;
         }
         alphaMM_ = alpha * m_ * m_;
     }
@@ -145,7 +146,7 @@ private:
     uint8_t b_;     /// register bit width
     uint32_t m_;     /// register size
     double alphaMM_; /// alpha * m^2
-    std::vector<uint8_t> M_;
+    std::vector<uint8_t> M_;    ///< registers
 
     uint8_t rho(uint32_t x, uint8_t b) {
         uint8_t v = 1;
