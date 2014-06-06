@@ -119,7 +119,7 @@ public:
             ss << "number of registers doesn't match: " << m_ << " != " << other.m_;
             throw std::invalid_argument(ss.str().c_str());
         }
-        for (int r = 0; r < m_; ++r) {
+        for (uint32_t r = 0; r < m_; ++r) {
             if (M_[r] < other.M_[r]) {
                 M_[r] = other.M_[r];
             }
