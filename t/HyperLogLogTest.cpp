@@ -75,25 +75,29 @@ Describe(hll_HyperLogLog) {
     }
 
     It(estimate_cardinality) {
-        for (int n = 0; n < 10; ++n) {
+        unsigned int k = 16;
+        double expectRatio = 1.04/sqrt(k);
+        for (size_t n = 0; n < 10; ++n) {
             HyperLogLog hll(16);
             size_t dataNum = 500;
-            for (int i = 1; i < dataNum; ++i) {
+            for (size_t i = 1; i < dataNum; ++i) {
                 std::string str;
                 getUniqueString(str);
                 hll.add(str.c_str(), str.size());
             }
             double cardinality = hll.estimate();
             double errorRatio = fabs(dataNum - cardinality) / dataNum;
-            Assert::That(errorRatio, IsLessThan(0.01));
+            Assert::That(errorRatio, IsLessThan(expectRatio));
         }
     }
 
     Describe(merge) {
         It(merge_registers) {
-            HyperLogLog hll(16);
+            unsigned int k = 16;
+            HyperLogLog hll(k);
+            double expectRatio = 1.04/sqrt(k);
             size_t dataNum = 100;
-            for (int i = 1; i < dataNum; ++i) {
+            for (size_t i = 1; i < dataNum; ++i) {
                 std::string str;
                 getUniqueString(str);
                 hll.add(str.c_str(), str.size());
@@ -101,7 +105,7 @@ Describe(hll_HyperLogLog) {
 
             HyperLogLog hll2(16);
             size_t dataNum2 = 200;
-            for (int i = 1; i < dataNum2; ++i) {
+            for (size_t i = 1; i < dataNum2; ++i) {
                 std::string str;
                 getUniqueString(str);
                 hll2.add(str.c_str(), str.size());
@@ -110,7 +114,7 @@ Describe(hll_HyperLogLog) {
             hll.merge(hll2);
             double cardinality = hll.estimate();
             double errorRatio = fabs(dataNum + dataNum2 - cardinality) / (dataNum + dataNum2);
-            Assert::That(errorRatio, IsLessThan(0.01));
+            Assert::That(errorRatio, IsLessThan(expectRatio));
         }
 
         It(merge_size_unmatched_registers) {
@@ -125,7 +129,7 @@ Describe(hll_HyperLogLog) {
     It(clear_register) {
         HyperLogLog hll(16);
         size_t dataNum = 100;
-        for (int i = 1; i < dataNum; ++i) {
+        for (size_t i = 1; i < dataNum; ++i) {
             std::string str;
             getUniqueString(str);
             hll.add(str.c_str(), str.size());
