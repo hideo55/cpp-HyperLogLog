@@ -35,6 +35,11 @@ static void getUniqueString(std::string& str) {
     } while (GEN_STRINGS.find(str) != GEN_STRINGS.end());
     GEN_STRINGS.insert(std::make_pair(str, true));
 }
+
+static double getError(double errorSum, uint32_t num) {
+    return 0.674 * sqrt(errorSum / num);
+}
+
 }
 
 Describe(hll_HyperLogLog) {
@@ -76,44 +81,53 @@ Describe(hll_HyperLogLog) {
 
     It(estimate_cardinality) {
         unsigned int k = 16;
-        double expectRatio = 0.01;
-        for (size_t n = 0; n < 10; ++n) {
+        double expectRatio = 1.04 / sqrt(1 << k);
+        double error = 0.0;
+        size_t dataNum = 500;
+        size_t execNum = 10;
+        for (size_t n = 0; n < execNum; ++n) {
             HyperLogLog hll(k);
-            size_t dataNum = 500;
             for (size_t i = 1; i < dataNum; ++i) {
                 std::string str;
                 getUniqueString(str);
                 hll.add(str.c_str(), str.size());
             }
             double cardinality = hll.estimate();
-            double errorRatio = fabs(dataNum - cardinality) / dataNum;
-            Assert::That(errorRatio, IsLessThan(expectRatio));
+            error += pow((cardinality - dataNum), 2);
         }
+        double errorRatio = getError(error, execNum) / dataNum;
+        Assert::That(errorRatio, IsLessThan(expectRatio));
     }
 
     Describe(merge) {
         It(merge_registers) {
             unsigned int k = 16;
-            HyperLogLog hll(k);
-            double expectRatio = 0.01;
+            double expectRatio = 1.04 / sqrt((1 << k)) * 2;
             size_t dataNum = 100;
-            for (size_t i = 1; i < dataNum; ++i) {
-                std::string str;
-                getUniqueString(str);
-                hll.add(str.c_str(), str.size());
-            }
-
-            HyperLogLog hll2(16);
             size_t dataNum2 = 200;
-            for (size_t i = 1; i < dataNum2; ++i) {
-                std::string str;
-                getUniqueString(str);
-                hll2.add(str.c_str(), str.size());
-            }
+            size_t execNum = 10;
+            double error = 0.0;
+            for (size_t i = 0; i < execNum; ++i) {
+                HyperLogLog hll(k);
+                for (size_t i = 1; i < dataNum; ++i) {
+                    std::string str;
+                    getUniqueString(str);
+                    hll.add(str.c_str(), str.size());
+                }
 
-            hll.merge(hll2);
-            double cardinality = hll.estimate();
-            double errorRatio = fabs(dataNum + dataNum2 - cardinality) / (dataNum + dataNum2);
+                HyperLogLog hll2(k);
+
+                for (size_t i = 1; i < dataNum2; ++i) {
+                    std::string str;
+                    getUniqueString(str);
+                    hll2.add(str.c_str(), str.size());
+                }
+
+                hll.merge(hll2);
+                double cardinality = hll.estimate();
+                error += pow((cardinality - (dataNum + dataNum2)), 2);
+            }
+            double errorRatio = getError(error, execNum) / (dataNum + dataNum2);
             Assert::That(errorRatio, IsLessThan(expectRatio));
         }
 
