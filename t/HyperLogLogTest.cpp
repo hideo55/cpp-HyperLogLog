@@ -76,9 +76,9 @@ Describe(hll_HyperLogLog) {
 
     It(estimate_cardinality) {
         unsigned int k = 16;
-        double expectRatio = 1.04/sqrt(k);
+        double expectRatio = 0.01;
         for (size_t n = 0; n < 10; ++n) {
-            HyperLogLog hll(16);
+            HyperLogLog hll(k);
             size_t dataNum = 500;
             for (size_t i = 1; i < dataNum; ++i) {
                 std::string str;
@@ -95,7 +95,7 @@ Describe(hll_HyperLogLog) {
         It(merge_registers) {
             unsigned int k = 16;
             HyperLogLog hll(k);
-            double expectRatio = 1.04/sqrt(k);
+            double expectRatio = 0.01;
             size_t dataNum = 100;
             for (size_t i = 1; i < dataNum; ++i) {
                 std::string str;

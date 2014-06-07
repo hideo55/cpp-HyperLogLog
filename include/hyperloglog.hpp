@@ -37,7 +37,7 @@ public:
      * @exception std::invalid_argument the argument is out of range.
      */
     HyperLogLog(uint8_t b) throw (std::invalid_argument) :
-            b_(b), m_(1 << b), M_(m_ + 1, 0) {
+            b_(b), m_(1 << b), M_(m_, 0) {
 
         if (b < 4 || 16 < b) {
             throw std::invalid_argument("bit width must be in the range [4,16]");
@@ -97,7 +97,7 @@ public:
                 }
             }
             if (zeros != 0) {
-                estimate = m_ * log((double) m_ / zeros);
+                estimate = m_ * log(static_cast<double>(m_)/ zeros);
             }
         } else if (estimate > (1.0 / 30.0) * pow_2_32) {
             estimate = neg_pow_2_32 * log(1.0 - (estimate / pow_2_32));
