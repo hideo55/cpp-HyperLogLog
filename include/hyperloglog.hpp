@@ -32,11 +32,11 @@ public:
      * Constructor
      *
      * @param[in] b bit width (register size will be 2 to the b power).
-     *            This value must be in the range[4,16].
+     *            This value must be in the range[4,16].Default value is 4.
      *
      * @exception std::invalid_argument the argument is out of range.
      */
-    HyperLogLog(uint8_t b) throw (std::invalid_argument) :
+    HyperLogLog(uint8_t b = 4) throw (std::invalid_argument) :
             b_(b), m_(1 << b), M_(m_, 0) {
 
         if (b < 4 || 16 < b) {
@@ -140,6 +140,51 @@ public:
      */
     uint32_t registerSize() const {
         return m_;
+    }
+
+    /**
+     * Exchanges the content of the instance
+     *
+     * @param[in,out] rhs Another HyperLogLog instance
+     */
+    void swap(HyperLogLog& rhs) {
+        std::swap(b_, rhs.b_);
+        std::swap(m_, rhs.m_);
+        std::swap(alphaMM_, rhs.alphaMM_);
+        M_.swap(rhs.M_);       
+    }
+
+    /**
+     * Dump the current status to a stream
+     *
+     * @param[out] os The output stream where the data is saved
+     *
+     * @exception std::runtime_error When failed to dump.
+     */
+    void dump(std::ostream& os) const throw(std::runtime_error){
+        os.write((char*)&b_, sizeof(b_));
+        os.write((char*)&M_[0], sizeof(M_[0]) * M_.size());
+        if(os.fail()){
+            throw std::runtime_error("Failed to dump");
+        }
+    }
+
+    /**
+     * Restore the status from a stream
+     * 
+     * @param[in] is The input stream where the status is saved
+     *
+     * @exception std::runtime_error When failed to restore.
+     */
+    void restore(std::istream& is) throw(std::runtime_error){
+        uint8_t b = 0;
+        is.read((char*)&b, sizeof(b));
+        HyperLogLog tempHLL(b);
+        is.read((char*)&(tempHLL.M_[0]), sizeof(M_[0]) * tempHLL.m_);
+        if(is.fail()){
+           throw std::runtime_error("Failed to restore");
+        }       
+        swap(tempHLL);
     }
 
 private:
