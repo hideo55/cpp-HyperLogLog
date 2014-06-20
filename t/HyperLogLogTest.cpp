@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 using namespace igloo;
 using namespace hll;
@@ -41,6 +42,22 @@ static double getError(double errorSum, uint32_t num) {
 }
 
 }
+
+class ScopedFile {
+public:
+    ScopedFile(std::string& filename) : filename_(filename) {
+    }
+
+    ~ScopedFile() {
+        remove(filename_.c_str());   
+    }
+
+    const std::string& getFileName() const {
+        return filename_;
+    }
+private:
+    std::string filename_;
+};
 
 Describe(hll_HyperLogLog) {
     Describe(create_instance) {
@@ -97,6 +114,31 @@ Describe(hll_HyperLogLog) {
         }
         double errorRatio = getError(error, execNum) / dataNum;
         Assert::That(errorRatio, IsLessThan(expectRatio));
+    }
+
+    It(dump_and_restore) {
+        unsigned int k = 16;
+        size_t dataNum = 500;
+        HyperLogLog hll(k);
+        for (size_t i = 1; i < dataNum; ++i) {
+            std::string str;
+            getUniqueString(str);
+            hll.add(str.c_str(), str.size());
+        }
+        double cardinality = hll.estimate();
+        {
+            std::string dumpFile = "./t/hll_test.dump";
+            ScopedFile sf(dumpFile);
+            std::ofstream ofs(dumpFile.c_str());
+            hll.dump(ofs);
+            ofs.close();
+
+            std::ifstream ifs(dumpFile.c_str());
+            HyperLogLog hll2;
+            hll2.restore(ifs);
+            ifs.close();
+            Assert::That(hll2.estimate(), Equals(cardinality));
+        }
     }
 
     Describe(merge) {
