@@ -99,9 +99,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a29392bbe10af3675869d76a0df06a370"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a29392bbe10af3675869d76a0df06a370">HyperLogLog</a> (uint8_t b)  throw (std::invalid_argument)</td></tr>
-<tr class="memdesc:a29392bbe10af3675869d76a0df06a370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a29392bbe10af3675869d76a0df06a370">More...</a><br/></td></tr>
-<tr class="separator:a29392bbe10af3675869d76a0df06a370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af811846c32ba79a0ac0d234065497917"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#af811846c32ba79a0ac0d234065497917">HyperLogLog</a> (uint8_t b=4)  throw (std::invalid_argument)</td></tr>
+<tr class="memdesc:af811846c32ba79a0ac0d234065497917"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#af811846c32ba79a0ac0d234065497917">More...</a><br/></td></tr>
+<tr class="separator:af811846c32ba79a0ac0d234065497917"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb970cc924194ba4b4983d9bc1242ce7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#aeb970cc924194ba4b4983d9bc1242ce7">add</a> (const char *str, uint32_t len)</td></tr>
 <tr class="memdesc:aeb970cc924194ba4b4983d9bc1242ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds element to the estimator.  <a href="#aeb970cc924194ba4b4983d9bc1242ce7">More...</a><br/></td></tr>
 <tr class="separator:aeb970cc924194ba4b4983d9bc1242ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,13 +117,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1b832419b07fa9dcca1e993c4f6eb47f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a1b832419b07fa9dcca1e993c4f6eb47f">registerSize</a> () const </td></tr>
 <tr class="memdesc:a1b832419b07fa9dcca1e993c4f6eb47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns size of register.  <a href="#a1b832419b07fa9dcca1e993c4f6eb47f">More...</a><br/></td></tr>
 <tr class="separator:a1b832419b07fa9dcca1e993c4f6eb47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad254ac6179e85a02004dbb906b912444"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#ad254ac6179e85a02004dbb906b912444">swap</a> (<a class="el" href="classhll_1_1_hyper_log_log.html">HyperLogLog</a> &amp;rhs)</td></tr>
+<tr class="memdesc:ad254ac6179e85a02004dbb906b912444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exchanges the content of the instance.  <a href="#ad254ac6179e85a02004dbb906b912444">More...</a><br/></td></tr>
+<tr class="separator:ad254ac6179e85a02004dbb906b912444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af36b6a3909c1fa813fe3dc60b8fe7e63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#af36b6a3909c1fa813fe3dc60b8fe7e63">dump</a> (std::ostream &amp;os) const   throw (std::runtime_error)</td></tr>
+<tr class="memdesc:af36b6a3909c1fa813fe3dc60b8fe7e63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump the current status to a stream.  <a href="#af36b6a3909c1fa813fe3dc60b8fe7e63">More...</a><br/></td></tr>
+<tr class="separator:af36b6a3909c1fa813fe3dc60b8fe7e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57a6627d149a3589aab9962c65687460"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a57a6627d149a3589aab9962c65687460">restore</a> (std::istream &amp;is)  throw (std::runtime_error)</td></tr>
+<tr class="memdesc:a57a6627d149a3589aab9962c65687460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore the status from a stream.  <a href="#a57a6627d149a3589aab9962c65687460">More...</a><br/></td></tr>
+<tr class="separator:a57a6627d149a3589aab9962c65687460"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implement of '<a class="el" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a>' estimate cardinality algorithm. </p>
 
 <p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00028">28</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a29392bbe10af3675869d76a0df06a370"></a>
+<a class="anchor" id="af811846c32ba79a0ac0d234065497917"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -134,7 +143,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">hll::HyperLogLog::HyperLogLog </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>b</em></td><td>)</td>
+          <td class="paramname"><em>b</em> = <code>4</code></td><td>)</td>
           <td>  throw (std::invalid_argument)</td>
         </tr>
       </table>
@@ -148,7 +157,7 @@ Public Member Functions</h2></td></tr>
 <p>Constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>bit width (register size will be 2 to the b power). This value must be in the range[4,16].</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>bit width (register size will be 2 to the b power). This value must be in the range[4,16].Default value is 4.</td></tr>
   </table>
   </dd>
 </dl>
@@ -205,7 +214,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00069">69</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00070">70</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
 
 </div>
 </div>
@@ -232,7 +241,47 @@ Public Member Functions</h2></td></tr>
 
 <p>Clears all internal registers. </p>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00131">131</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00132">132</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af36b6a3909c1fa813fe3dc60b8fe7e63"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hll::HyperLogLog::dump </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em></td><td>)</td>
+          <td> const  throw (std::runtime_error)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dump the current status to a stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">os</td><td>The output stream where the data is saved</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>When failed to dump. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00164">164</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
 
 </div>
 </div>
@@ -260,7 +309,7 @@ Public Member Functions</h2></td></tr>
 <p>Estimates cardinality value. </p>
 <dl class="section return"><dt>Returns</dt><dd>Estimated cardinality value. </dd></dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00084">84</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00085">85</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
 
 </div>
 </div>
@@ -301,7 +350,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00115">115</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00116">116</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
 
 </div>
 </div>
@@ -329,7 +378,81 @@ Public Member Functions</h2></td></tr>
 <p>Returns size of register. </p>
 <dl class="section return"><dt>Returns</dt><dd>Register size </dd></dl>
 
-<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00140">140</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00141">141</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a57a6627d149a3589aab9962c65687460"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hll::HyperLogLog::restore </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>is</em></td><td>)</td>
+          <td>  throw (std::runtime_error)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restore the status from a stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">is</td><td>The input stream where the status is saved</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>When failed to restore. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00179">179</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad254ac6179e85a02004dbb906b912444"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hll::HyperLogLog::swap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhll_1_1_hyper_log_log.html">HyperLogLog</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Exchanges the content of the instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">rhs</td><td>Another <a class="el" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a> instance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00150">150</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
 
 </div>
 </div>
@@ -339,7 +462,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 16 2014 04:38:14 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 20 2014 18:42:09 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
