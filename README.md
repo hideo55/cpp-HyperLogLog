@@ -13,6 +13,7 @@ HyperLoglog is a headers-only library so you just need to include "hyperloglog.h
 #include <vector>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "hyperloglog.hpp"
 
 using namespace hll;
@@ -32,6 +33,9 @@ int main(){
     double cardinality = hll.estimate();
 
     std::cout << "Cardinality:" << cardinality << std::endl;
+
+    std::ofstream ofs("path/to/dumpfile");
+    hll.dump(ofs); // It can restore by restore().
 
     return 0;
 }
