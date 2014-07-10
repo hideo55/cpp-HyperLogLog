@@ -39,8 +39,10 @@ int main(){
 
     return 0;
 }
-
 ```
+
+If you are using [Clib](https://github.com/clibs/clib), you can get source files by `clib install hideo55/cpp-HyperLogLog`.
+
 ## Document
 
 http://hideo55.github.com/cpp-HyperLogLog/
