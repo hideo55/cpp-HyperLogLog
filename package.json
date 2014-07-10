@@ -1,0 +1,9 @@
+{
+  "name": "hyperloglog",
+  "version": "1.0.0",
+  "repo": "hideo55/cpp-HyperLogLog",
+  "description": "C++ implementation of HyperLogLog ",
+  "keywords": ["hyperloglog"], 
+  "license": "MIT",
+  "src": ["include/hyperloglog.hpp", "include/murmur3.h"]
+}
