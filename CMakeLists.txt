@@ -7,6 +7,8 @@ SET(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -D_DEBUG")
 
 SET(CMAKE_BUILD_TYPE Release)
 
+SET(CMAKE_CONFIGURATION_TYPES ${CMAKE_BUILD_TYPE} CACHE STRING "" FORCE)
+
 PROJECT(HyperLogLog CXX)
 
 SET(serial "1.0.0")
@@ -18,7 +20,7 @@ INCLUDE_DIRECTORIES(include extlib/igloo extlib/igloo-TapTestListener)
 # Testing
 ENABLE_TESTING()
 
-ADD_EXECUTABLE(t/test_hyperloglog t/HyperLogLogTest.cpp)
+ADD_EXECUTABLE(test_hyperloglog t/HyperLogLogTest.cpp)
 
-ADD_TEST(NAME test_hyperloglog COMMAND ./t/test_hyperloglog)
+ADD_TEST(NAME test_hyperloglog COMMAND test_hyperloglog)
 

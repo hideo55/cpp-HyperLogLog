@@ -17,6 +17,32 @@
 
 #define HLL_HASH_SEED 313
 
+#if defined(__GNUC__) 
+
+#define _GET_CLZ(x, b) (uint8_t)std::min(b, ::__builtin_clzl(x))
+
+#else 
+
+inline uint8_t _get_leading_zero_count(uint32_t x, uint8_t b) {
+
+#if defined (_MSC_VER)
+    uint32_t leading_zero_len = 32;
+    ::_BitScanReverse(&leading_zero_len, x);
+    --leading_zero_len;
+    return std::min(b, (uint8_t)leading_zero_len);
+#else
+    uint8_t v = 1;
+    while (v <= b && !(x & 0x80000000)) {
+        v++;
+        x <<= 1;
+    }
+    return v;
+#endif
+
+}
+#define _GET_CLZ(x, b) _get_leading_zero_count(x, b)
+#endif /* defined(__GNUC__) */
+
 namespace hll {
 
 static const double pow_2_32 = 4294967296.0; ///< 2^32
@@ -71,7 +97,7 @@ public:
         uint32_t hash;
         MurmurHash3_x86_32(str, len, HLL_HASH_SEED, (void*) &hash);
         uint32_t index = hash >> (32 - b_);
-        uint8_t rank = rho((hash << b_), 32 - b_);
+        uint8_t rank = _GET_CLZ((hash << b_), 32 - b_);
         if (rank > M_[index]) {
             M_[index] = rank;
         }
@@ -86,7 +112,7 @@ public:
         double estimate;
         double sum = 0.0;
         for (uint32_t i = 0; i < m_; i++) {
-            sum += 1.0 / pow(2.0, M_[i]);
+            sum += 1.0 / std::pow(2.0, M_[i]);
         }
         estimate = alphaMM_ / sum; // E in the original paper
         if (estimate <= 2.5 * m_) {
@@ -97,7 +123,7 @@ public:
                 }
             }
             if (zeros != 0) {
-                estimate = m_ * log(static_cast<double>(m_)/ zeros);
+                estimate = m_ * std::log(static_cast<double>(m_)/ zeros);
             }
         } else if (estimate > (1.0 / 30.0) * pow_2_32) {
             estimate = neg_pow_2_32 * log(1.0 - (estimate / pow_2_32));
@@ -192,16 +218,6 @@ private:
     uint32_t m_; ///< register size
     double alphaMM_; ///< alpha * m^2
     std::vector<uint8_t> M_; ///< registers
-
-    uint8_t rho(uint32_t x, uint8_t b) {
-        uint8_t v = 1;
-        while (v <= b && !(x & 0x80000000)) {
-            v++;
-            x <<= 1;
-        }
-        return v;
-    }
-
 };
 
 } // namespace hll

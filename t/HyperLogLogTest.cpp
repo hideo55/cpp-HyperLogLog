@@ -88,17 +88,18 @@ Describe(hll_HyperLogLog) {
 
     It(get_register_size) {
         HyperLogLog *hll = new HyperLogLog(10);
-        Assert::That(hll->registerSize(), Equals(pow(2, 10)));
+        Assert::That(hll->registerSize(), Equals(1UL << 19));
         delete hll;
 
         hll = new HyperLogLog(16);
-        Assert::That(hll->registerSize(), Equals(pow(2, 16)));
+        Assert::That(hll->registerSize(), Equals(1UL << 16));
         delete hll;
     }
 
     It(estimate_cardinality) {
-        unsigned int k = 16;
-        double expectRatio = 1.04 / sqrt(1 << k);
+        uint32_t k = 16;
+        uint32_t registerSize = 1UL << k;
+        double expectRatio = 1.04 / sqrt((double)registerSize);
         double error = 0.0;
         size_t dataNum = 500;
         size_t execNum = 10;
@@ -110,14 +111,14 @@ Describe(hll_HyperLogLog) {
                 hll.add(str.c_str(), str.size());
             }
             double cardinality = hll.estimate();
-            error += pow((cardinality - dataNum), 2);
+            error += std::pow((cardinality - dataNum), 2);
         }
         double errorRatio = getError(error, execNum) / dataNum;
         Assert::That(errorRatio, IsLessThan(expectRatio));
     }
 
     It(dump_and_restore) {
-        unsigned int k = 16;
+        uint32_t k = 16;
         size_t dataNum = 500;
         HyperLogLog hll(k);
         for (size_t i = 1; i < dataNum; ++i) {
@@ -143,8 +144,9 @@ Describe(hll_HyperLogLog) {
 
     Describe(merge) {
         It(merge_registers) {
-            unsigned int k = 16;
-            double expectRatio = 1.04 / sqrt((1 << k)) * 2;
+            uint32_t k = 16;
+            uint32_t registerSize = 1UL << k;
+            double expectRatio = 1.04 / sqrt((double)registerSize) * 2;
             size_t dataNum = 100;
             size_t dataNum2 = 200;
             size_t execNum = 10;
@@ -167,7 +169,7 @@ Describe(hll_HyperLogLog) {
 
                 hll.merge(hll2);
                 double cardinality = hll.estimate();
-                error += pow((cardinality - (dataNum + dataNum2)), 2);
+                error += std::pow((cardinality - (dataNum + dataNum2)), 2);
             }
             double errorRatio = getError(error, execNum) / (dataNum + dataNum2);
             Assert::That(errorRatio, IsLessThan(expectRatio));

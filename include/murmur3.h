@@ -31,7 +31,7 @@ typedef unsigned __int64 uint64_t;
 
 #define FORCE_INLINE __attribute__((always_inline))
 
-inline uint32_t rotl32 ( uint32_t x, int8_t r )
+inline uint32_t rotl32 ( uint32_t x, uint8_t r )
 {
   return (x << r) | (x >> (32 - r));
 }
