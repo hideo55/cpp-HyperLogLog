@@ -147,7 +147,7 @@ Describe(hll_HyperLogLog) {
             uint32_t k = 16;
             uint32_t registerSize = 1UL << k;
             double expectRatio = 1.04 / sqrt((double)registerSize) * 2;
-            size_t dataNum = 100;
+            size_t dataNum = 1 << 10;
             size_t dataNum2 = 200;
             size_t execNum = 10;
             double error = 0.0;

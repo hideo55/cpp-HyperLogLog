@@ -5,4 +5,4 @@ compiler:
 os:
   - linux
   - osx
-script: cmake ./CMakeLists.txt && make && make test
+script: cmake ./CMakeLists.txt && make && ctest -VV
