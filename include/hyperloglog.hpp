@@ -17,7 +17,7 @@
 
 #define HLL_HASH_SEED 313
 
-#if defined(__GNUC__) 
+#if defined(__has_builtin) && (defined(__GNUC__) || defined(__clang__))
 
 #define _GET_CLZ(x, b) (uint8_t)std::min(b, ::__builtin_clzl(x))
 
