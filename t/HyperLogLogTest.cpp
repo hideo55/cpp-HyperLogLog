@@ -37,10 +37,6 @@ static void getUniqueString(std::string& str) {
     GEN_STRINGS.insert(std::make_pair(str, true));
 }
 
-static double getError(double errorSum, uint32_t num) {
-    return 0.674 * sqrt(errorSum/num);
-}
-
 }
 
 class ScopedFile {
