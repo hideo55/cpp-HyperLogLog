@@ -5,4 +5,4 @@ Makefile
 Testing
 CMakeFiles
 .cproject
-bin/test_hyperloglog
+test_hyperloglog
