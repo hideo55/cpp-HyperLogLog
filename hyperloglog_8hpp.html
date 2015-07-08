@@ -87,7 +87,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">hyperloglog.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -119,6 +120,13 @@ Namespaces</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:a21231cbc051c73769ed18fc81ef83f49"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hyperloglog_8hpp.html#a21231cbc051c73769ed18fc81ef83f49">HLL_HASH_SEED</a>&#160;&#160;&#160;313</td></tr>
 <tr class="separator:a21231cbc051c73769ed18fc81ef83f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d01c9ddfbdf8c15c19165f32536064b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hyperloglog_8hpp.html#a3d01c9ddfbdf8c15c19165f32536064b">_GET_CLZ</a>(x, b)&#160;&#160;&#160;<a class="el" href="hyperloglog_8hpp.html#ab4059a220dd917d930eba51e812f2523">_get_leading_zero_count</a>(x, b)</td></tr>
+<tr class="separator:a3d01c9ddfbdf8c15c19165f32536064b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab4059a220dd917d930eba51e812f2523"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hyperloglog_8hpp.html#ab4059a220dd917d930eba51e812f2523">_get_leading_zero_count</a> (uint32_t x, uint8_t b)</td></tr>
+<tr class="separator:ab4059a220dd917d930eba51e812f2523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>HyperLogLog cardinality estimator. </p>
@@ -127,6 +135,34 @@ Macros</h2></td></tr>
 
 <p>Definition in file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a3d01c9ddfbdf8c15c19165f32536064b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _GET_CLZ</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="hyperloglog_8hpp.html#ab4059a220dd917d930eba51e812f2523">_get_leading_zero_count</a>(x, b)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00043">43</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a21231cbc051c73769ed18fc81ef83f49"></a>
 <div class="memitem">
 <div class="memproto">
@@ -141,10 +177,47 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ab4059a220dd917d930eba51e812f2523"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t _get_leading_zero_count </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00026">26</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 20 2014 18:42:09 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 9 2015 02:08:15 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
