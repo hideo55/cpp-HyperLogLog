@@ -97,12 +97,15 @@ Describe(hll_HyperLogLog) {
     }
 
     It(estimate_cardinality) {
-        uint32_t k = 30;
+        uint32_t k = 16;
         uint32_t registerSize = 1UL << k;
         double expectRatio = 1.04 / sqrt((double)registerSize);
         double error = 0.0;
         size_t dataNum = 1 << 10;
-        size_t execNum = 1;
+        size_t execNum = 10;
+#if defined(HLL_HEAVYTEST)
+        k = 30;
+#endif
         for (size_t n = 0; n < execNum; ++n) {
             HyperLogLog hll(k);
             std::map<std::string, bool>().swap(GEN_STRINGS);
