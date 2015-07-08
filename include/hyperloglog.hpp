@@ -17,7 +17,7 @@
 
 #define HLL_HASH_SEED 313
 
-#if defined(__GNUC__) 
+#if defined(__has_builtin) && (defined(__GNUC__) || defined(__clang__))
 
 #define _GET_CLZ(x, b) (uint8_t)std::min(b, ::__builtin_clzl(x))
 
@@ -58,15 +58,15 @@ public:
      * Constructor
      *
      * @param[in] b bit width (register size will be 2 to the b power).
-     *            This value must be in the range[4,16].Default value is 4.
+     *            This value must be in the range[4,30].Default value is 4.
      *
      * @exception std::invalid_argument the argument is out of range.
      */
     HyperLogLog(uint8_t b = 4) throw (std::invalid_argument) :
             b_(b), m_(1 << b), M_(m_, 0) {
 
-        if (b < 4 || 16 < b) {
-            throw std::invalid_argument("bit width must be in the range [4,16]");
+        if (b < 4 || 30 < b) {
+            throw std::invalid_argument("bit width must be in the range [4,30]");
         }
 
         double alpha;

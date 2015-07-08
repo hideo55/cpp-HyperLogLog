@@ -37,10 +37,6 @@ static void getUniqueString(std::string& str) {
     GEN_STRINGS.insert(std::make_pair(str, true));
 }
 
-static double getError(double errorSum, uint32_t num) {
-    return 0.674 * sqrt(errorSum / num);
-}
-
 }
 
 class ScopedFile {
@@ -76,23 +72,23 @@ Describe(hll_HyperLogLog) {
         It(pass_out_of_range_argument_min) {
             AssertThrows(std::invalid_argument, HyperLogLog(3));
             Assert::That(LastException<std::invalid_argument>().what(),
-                    Is().Containing("bit width must be in the range [4,16]"));
+                    Is().Containing("bit width must be in the range [4,30]"));
         }
 
         It(pass_out_of_range_argument_max) {
-            AssertThrows(std::invalid_argument, HyperLogLog(17));
+            AssertThrows(std::invalid_argument, HyperLogLog(31));
             Assert::That(LastException<std::invalid_argument>().what(),
-                    Is().Containing("bit width must be in the range [4,16]"));
+                    Is().Containing("bit width must be in the range [4,30]"));
         }
     };
 
     It(get_register_size) {
         HyperLogLog *hll = new HyperLogLog(10);
-        Assert::That(hll->registerSize(), Equals(1UL << 19));
+        Assert::That(hll->registerSize(), Equals(1UL << 10));
         delete hll;
 
-        hll = new HyperLogLog(16);
-        Assert::That(hll->registerSize(), Equals(1UL << 16));
+        hll = new HyperLogLog(30);
+        Assert::That(hll->registerSize(), Equals(1UL << 30));
         delete hll;
     }
 
@@ -101,19 +97,23 @@ Describe(hll_HyperLogLog) {
         uint32_t registerSize = 1UL << k;
         double expectRatio = 1.04 / sqrt((double)registerSize);
         double error = 0.0;
-        size_t dataNum = 500;
+        size_t dataNum = 1 << 10;
         size_t execNum = 10;
+#if defined(HLL_HEAVYTEST)
+        k = 30;
+#endif
         for (size_t n = 0; n < execNum; ++n) {
             HyperLogLog hll(k);
-            for (size_t i = 1; i < dataNum; ++i) {
+            std::map<std::string, bool>().swap(GEN_STRINGS);
+            for (size_t i = 0; i < dataNum; ++i) {
                 std::string str;
                 getUniqueString(str);
                 hll.add(str.c_str(), str.size());
             }
             double cardinality = hll.estimate();
-            error += std::pow((cardinality - dataNum), 2);
+            error += std::abs(cardinality - (double)dataNum) / dataNum;
         }
-        double errorRatio = getError(error, execNum) / dataNum;
+        double errorRatio = error / execNum;
         Assert::That(errorRatio, IsLessThan(expectRatio));
     }
 
@@ -153,6 +153,7 @@ Describe(hll_HyperLogLog) {
             double error = 0.0;
             for (size_t i = 0; i < execNum; ++i) {
                 HyperLogLog hll(k);
+                std::map<std::string, bool>().swap(GEN_STRINGS);
                 for (size_t i = 1; i < dataNum; ++i) {
                     std::string str;
                     getUniqueString(str);
@@ -169,9 +170,9 @@ Describe(hll_HyperLogLog) {
 
                 hll.merge(hll2);
                 double cardinality = hll.estimate();
-                error += std::pow((cardinality - (dataNum + dataNum2)), 2);
+                error += std::abs(cardinality - (double)(dataNum + dataNum2))/(dataNum + dataNum2);
             }
-            double errorRatio = getError(error, execNum) / (dataNum + dataNum2);
+            double errorRatio = error / execNum;
             Assert::That(errorRatio, IsLessThan(expectRatio));
         }
 
@@ -205,6 +206,6 @@ int main() {
     TapTestListener listener;
     runner.AddListener(&listener);
 
-    runner.Run();
+    return runner.Run();
 }
 
