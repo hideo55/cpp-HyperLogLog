@@ -146,9 +146,9 @@ Describe(hll_HyperLogLog) {
         It(merge_registers) {
             uint32_t k = 16;
             uint32_t registerSize = 1UL << k;
-            double expectRatio = 1.04 / sqrt((double)registerSize) * 2;
+            double expectRatio = 1.04 / sqrt((double)registerSize);
             size_t dataNum = 1 << 10;
-            size_t dataNum2 = 200;
+            size_t dataNum2 = 1 << 10;
             size_t execNum = 10;
             double error = 0.0;
             for (size_t i = 0; i < execNum; ++i) {
