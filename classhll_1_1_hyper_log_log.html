@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -70,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,7 +87,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">hll::HyperLogLog Class Reference</div>  </div>
 </div><!--header-->
@@ -96,6 +98,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="classhll_1_1_hyper_log_log.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for hll::HyperLogLog:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classhll_1_1_hyper_log_log.png" usemap="#hll::HyperLogLog_map" alt=""/>
+  <map id="hll::HyperLogLog_map" name="hll::HyperLogLog_map">
+<area href="classhll_1_1_hyper_log_log_h_i_p.html" title="HIP estimator on HyperLogLog conter." alt="hll::HyperLogLogHIP" shape="rect" coords="0,56,128,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -126,6 +137,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a57a6627d149a3589aab9962c65687460"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a57a6627d149a3589aab9962c65687460">restore</a> (std::istream &amp;is)  throw (std::runtime_error)</td></tr>
 <tr class="memdesc:a57a6627d149a3589aab9962c65687460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restore the status from a stream.  <a href="#a57a6627d149a3589aab9962c65687460">More...</a><br/></td></tr>
 <tr class="separator:a57a6627d149a3589aab9962c65687460"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a08110b2342b511bd8b6026ce06dd79b9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a08110b2342b511bd8b6026ce06dd79b9">b_</a></td></tr>
+<tr class="memdesc:a08110b2342b511bd8b6026ce06dd79b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">register bit width  <a href="#a08110b2342b511bd8b6026ce06dd79b9">More...</a><br/></td></tr>
+<tr class="separator:a08110b2342b511bd8b6026ce06dd79b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd3b4c897eda7f5a41920b7c9de0b8df"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#acd3b4c897eda7f5a41920b7c9de0b8df">m_</a></td></tr>
+<tr class="memdesc:acd3b4c897eda7f5a41920b7c9de0b8df"><td class="mdescLeft">&#160;</td><td class="mdescRight">register size  <a href="#acd3b4c897eda7f5a41920b7c9de0b8df">More...</a><br/></td></tr>
+<tr class="separator:acd3b4c897eda7f5a41920b7c9de0b8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7020c31887cc0a08f0e5e9fc15640884"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a7020c31887cc0a08f0e5e9fc15640884">alphaMM_</a></td></tr>
+<tr class="memdesc:a7020c31887cc0a08f0e5e9fc15640884"><td class="mdescLeft">&#160;</td><td class="mdescRight">alpha * m^2  <a href="#a7020c31887cc0a08f0e5e9fc15640884">More...</a><br/></td></tr>
+<tr class="separator:a7020c31887cc0a08f0e5e9fc15640884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a372a20e49d081d6f3e507d1641203882"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhll_1_1_hyper_log_log.html#a372a20e49d081d6f3e507d1641203882">M_</a></td></tr>
+<tr class="memdesc:a372a20e49d081d6f3e507d1641203882"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers  <a href="#a372a20e49d081d6f3e507d1641203882">More...</a><br/></td></tr>
+<tr class="separator:a372a20e49d081d6f3e507d1641203882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implement of '<a class="el" href="classhll_1_1_hyper_log_log.html" title="Implement of &#39;HyperLogLog&#39; estimate cardinality algorithm.">HyperLogLog</a>' estimate cardinality algorithm. </p>
@@ -456,13 +482,110 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a7020c31887cc0a08f0e5e9fc15640884"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double hll::HyperLogLog::alphaMM_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>alpha * m^2 </p>
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00219">219</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a08110b2342b511bd8b6026ce06dd79b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t hll::HyperLogLog::b_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>register bit width </p>
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00217">217</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acd3b4c897eda7f5a41920b7c9de0b8df"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t hll::HyperLogLog::m_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>register size </p>
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00218">218</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a372a20e49d081d6f3e507d1641203882"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;uint8_t&gt; hll::HyperLogLog::M_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>registers </p>
+
+<p>Definition at line <a class="el" href="hyperloglog_8hpp_source.html#l00220">220</a> of file <a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="hyperloglog_8hpp_source.html">hyperloglog.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 9 2015 02:08:15 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 10 2015 00:44:55 for HyperLogLog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
