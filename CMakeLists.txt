@@ -21,6 +21,8 @@ INCLUDE_DIRECTORIES(include extlib/igloo extlib/igloo-TapTestListener)
 ENABLE_TESTING()
 
 ADD_EXECUTABLE(test_hyperloglog t/HyperLogLogTest.cpp)
+ADD_EXECUTABLE(test_hyperloglog_hip t/HyperLogLogHIPTest.cpp)
 
 ADD_TEST(NAME test_hyperloglog COMMAND test_hyperloglog)
+ADD_TEST(NAME test_hyperloglog_hip COMMAND test_hyperloglog_hip)
 
