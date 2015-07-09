@@ -2,12 +2,12 @@
 
 # HyperLoglog
 
-C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf) algorithm.
+C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf) algorithm and [HIP(Histric Inverse Probability) Estimator](http://arxiv.org/pdf/1306.3284v5.pdf).
 
 ## Usage
 
 HyperLoglog is a headers-only library so you just need to include "hyperloglog.hpp" and "murmur3.h" to use this project.
-You can use normal HyperLogLog counter class(hll::HyperLogLog) and HyperLogLog counter with HIP(Histric Inverse Probability) Estimator class(hll::HyperLogLogHIP).
+You can use normal HyperLogLog counter class(hll::HyperLogLog) and HyperLogLog counter with HIP Estimator class(hll::HyperLogLogHIP).
 
 ```C++
 
