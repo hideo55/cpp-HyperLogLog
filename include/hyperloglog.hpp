@@ -221,7 +221,7 @@ protected:
 };
 
 /**
- * @brief HIP estimator on HyperLogLog conter.
+ * @brief HIP estimator on HyperLogLog counter.
  */
 class HyperLogLogHIP : public HyperLogLog {
 public:
