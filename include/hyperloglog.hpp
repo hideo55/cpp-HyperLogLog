@@ -213,11 +213,160 @@ public:
         swap(tempHLL);
     }
 
-private:
+protected:
     uint8_t b_; ///< register bit width
     uint32_t m_; ///< register size
     double alphaMM_; ///< alpha * m^2
     std::vector<uint8_t> M_; ///< registers
+};
+
+/**
+ * @brief HIP estimator on HyperLogLog conter.
+ */
+class HyperLogLogHIP : public HyperLogLog {
+public:
+
+    /**
+     * Constructor
+     *
+     * @param[in] b bit width (register size will be 2 to the b power).
+     *            This value must be in the range[4,30].Default value is 4.
+     *
+     * @exception std::invalid_argument the argument is out of range.
+     */
+    HyperLogLogHIP(uint8_t b = 4) throw (std::invalid_argument) : HyperLogLog(b), register_limit_((1 << 5) - 1), c_(0.0), p_(1 << b) {
+    }
+
+    /**
+     * Adds element to the estimator
+     *
+     * @param[in] str string to add
+     * @param[in] len length of string
+     */
+    void add(const char* str, uint32_t len) {
+        uint32_t hash;
+        MurmurHash3_x86_32(str, len, HLL_HASH_SEED, (void*) &hash);
+        uint32_t index = hash >> (32 - b_);
+        uint8_t rank = _GET_CLZ((hash << b_), 32 - b_);
+        rank = rank == 0 ? register_limit_ : std::min(register_limit_, rank);
+        const uint8_t old = M_[index];
+        if (rank > old) {
+            c_ += 1.0 / (p_/m_);
+            p_ -= 1.0/(1 << old);
+            M_[index] = rank;
+            if(rank < 31){
+                p_ += 1.0/(uint32_t(1) << rank);
+            }
+        }
+    }
+
+    /**
+     * Estimates cardinality value.
+     *
+     * @return Estimated cardinality value.
+     */
+    double estimate() const {
+        return c_;
+    }
+
+    /**
+     * Merges the estimate from 'other' into this object, returning the estimate of their union.
+     * The number of registers in each must be the same.
+     *
+     * @param[in] other HyperLogLog instance to be merged
+     * 
+     * @exception std::invalid_argument number of registers doesn't match.
+     */
+    void merge(const HyperLogLogHIP& other) throw (std::invalid_argument) {
+        if (m_ != other.m_) {
+            std::stringstream ss;
+            ss << "number of registers doesn't match: " << m_ << " != " << other.m_;
+            throw std::invalid_argument(ss.str().c_str());
+        }
+        for (uint32_t r = 0; r < m_; ++r) {
+            const uint8_t b = M_[r];
+            const uint8_t b_other = other.M_[r];
+            if (b < b_other) {
+                c_ += 1.0 / (p_/m_);
+                p_ -= 1.0/(1 << b);
+                M_[r] = b_other;
+                if(b_other < register_limit_){
+                    p_ += 1.0/(1 << b_other);
+                }
+            }
+        }
+    }
+
+    /**
+     * Clears all internal registers.
+     */
+    void clear() {
+        std::fill(M_.begin(), M_.end(), 0);
+        c_ = 0.0;
+        p_ = 1 << b_;
+    }
+
+    /**
+     * Returns size of register.
+     *
+     * @return Register size
+     */
+    uint32_t registerSize() const {
+        return m_;
+    }
+
+    /**
+     * Exchanges the content of the instance
+     *
+     * @param[in,out] rhs Another HyperLogLog instance
+     */
+    void swap(HyperLogLogHIP& rhs) {
+        std::swap(b_, rhs.b_);
+        std::swap(m_, rhs.m_);
+        std::swap(c_, rhs.c_);
+        M_.swap(rhs.M_);       
+    }
+
+    /**
+     * Dump the current status to a stream
+     *
+     * @param[out] os The output stream where the data is saved
+     *
+     * @exception std::runtime_error When failed to dump.
+     */
+    void dump(std::ostream& os) const throw(std::runtime_error){
+        os.write((char*)&b_, sizeof(b_));
+        os.write((char*)&M_[0], sizeof(M_[0]) * M_.size());
+        os.write((char*)&c_, sizeof(c_));
+        os.write((char*)&p_, sizeof(p_));
+        if(os.fail()){
+            throw std::runtime_error("Failed to dump");
+        }
+    }
+
+    /**
+     * Restore the status from a stream
+     * 
+     * @param[in] is The input stream where the status is saved
+     *
+     * @exception std::runtime_error When failed to restore.
+     */
+    void restore(std::istream& is) throw(std::runtime_error){
+        uint8_t b = 0;
+        is.read((char*)&b, sizeof(b));
+        HyperLogLogHIP tempHLL(b);
+        is.read((char*)&(tempHLL.M_[0]), sizeof(M_[0]) * tempHLL.m_);
+        is.read((char*)&(tempHLL.c_), sizeof(double));
+        is.read((char*)&(tempHLL.p_), sizeof(double));
+        if(is.fail()){
+           throw std::runtime_error("Failed to restore");
+        }       
+        swap(tempHLL);
+    }
+private: 
+    const uint8_t register_limit_;
+    double c_;
+    double p_;
 };
 
 } // namespace hll

@@ -5,6 +5,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -55,63 +56,60 @@ private:
     std::string filename_;
 };
 
-Describe(hll_HyperLogLog) {
+Describe(hll_HyperLogLogHIP) {
     Describe(create_instance) {
         It(pass_minimum_arugment_in_range) {
-            HyperLogLog *hll = new HyperLogLog(4);
+            HyperLogLogHIP *hll = new HyperLogLogHIP(4);
             Assert::That(hll != NULL);
             delete hll;
         }
 
         It(pass_maximum_argument_in_range) {
-            HyperLogLog *hll = new HyperLogLog(16);
+            HyperLogLogHIP *hll = new HyperLogLogHIP(16);
             Assert::That(hll != NULL);
             delete hll;
         }
 
         It(pass_out_of_range_argument_min) {
-            AssertThrows(std::invalid_argument, HyperLogLog(3));
+            AssertThrows(std::invalid_argument, HyperLogLogHIP(3));
             Assert::That(LastException<std::invalid_argument>().what(),
                     Is().Containing("bit width must be in the range [4,30]"));
         }
 
         It(pass_out_of_range_argument_max) {
-            AssertThrows(std::invalid_argument, HyperLogLog(31));
+            AssertThrows(std::invalid_argument, HyperLogLogHIP(31));
             Assert::That(LastException<std::invalid_argument>().what(),
                     Is().Containing("bit width must be in the range [4,30]"));
         }
     };
 
     It(get_register_size) {
-        HyperLogLog *hll = new HyperLogLog(10);
+        HyperLogLogHIP *hll = new HyperLogLogHIP(10);
         Assert::That(hll->registerSize(), Equals(1UL << 10));
         delete hll;
 
-        hll = new HyperLogLog(30);
-        Assert::That(hll->registerSize(), Equals(1UL << 30));
+        hll = new HyperLogLogHIP(16);
+        Assert::That(hll->registerSize(), Equals(1UL << 16));
         delete hll;
     }
 
     It(estimate_cardinality) {
-        uint32_t k = 16;
+        uint32_t k = 30;
         uint32_t registerSize = 1UL << k;
-        double expectRatio = 1.04 / sqrt((double)registerSize);
+        double expectRatio = sqrt(2.0 / M_PI * ((double)registerSize - 2.0));
         double error = 0.0;
-        size_t dataNum = 1 << 10;
+        size_t dataNum = 500;
         size_t execNum = 10;
-#if defined(HLL_HEAVYTEST)
-        k = 30;
-#endif
         for (size_t n = 0; n < execNum; ++n) {
-            HyperLogLog hll(k);
+            HyperLogLogHIP hll(k);
             std::map<std::string, bool>().swap(GEN_STRINGS);
-            for (size_t i = 0; i < dataNum; ++i) {
+            for (size_t i = 1; i < dataNum; ++i) {
                 std::string str;
                 getUniqueString(str);
                 hll.add(str.c_str(), str.size());
             }
             double cardinality = hll.estimate();
-            error += std::abs(cardinality - (double)dataNum) / dataNum;
+            error += std::abs(cardinality - dataNum) / dataNum;
         }
         double errorRatio = error / execNum;
         Assert::That(errorRatio, IsLessThan(expectRatio));
@@ -120,7 +118,7 @@ Describe(hll_HyperLogLog) {
     It(dump_and_restore) {
         uint32_t k = 16;
         size_t dataNum = 500;
-        HyperLogLog hll(k);
+        HyperLogLogHIP hll(k);
         for (size_t i = 1; i < dataNum; ++i) {
             std::string str;
             getUniqueString(str);
@@ -135,7 +133,7 @@ Describe(hll_HyperLogLog) {
             ofs.close();
 
             std::ifstream ifs(dumpFile.c_str());
-            HyperLogLog hll2;
+            HyperLogLogHIP hll2;
             hll2.restore(ifs);
             ifs.close();
             Assert::That(hll2.estimate(), Equals(cardinality));
@@ -143,7 +141,7 @@ Describe(hll_HyperLogLog) {
     }
 
     It(clear_register) {
-        HyperLogLog hll(16);
+        HyperLogLogHIP hll(16);
         size_t dataNum = 100;
         for (size_t i = 1; i < dataNum; ++i) {
             std::string str;
@@ -159,13 +157,13 @@ Describe(hll_HyperLogLog) {
         It(merge_registers) {
             uint32_t k = 16;
             uint32_t registerSize = 1UL << k;
-            double expectRatio = 1.04 / sqrt((double)registerSize);
+            double expectRatio = sqrt(2.0 / M_PI * ((double)registerSize - 2.0));
             size_t dataNum = 1 << 10;
             size_t dataNum2 = 1 << 10;
             size_t execNum = 10;
             double error = 0.0;
             for (size_t i = 0; i < execNum; ++i) {
-                HyperLogLog hll(k);
+                HyperLogLogHIP hll(k);
                 std::map<std::string, bool>().swap(GEN_STRINGS);
                 for (size_t i = 1; i < dataNum; ++i) {
                     std::string str;
@@ -173,7 +171,7 @@ Describe(hll_HyperLogLog) {
                     hll.add(str.c_str(), str.size());
                 }
 
-                HyperLogLog hll2(k);
+                HyperLogLogHIP hll2(k);
 
                 for (size_t i = 1; i < dataNum2; ++i) {
                     std::string str;
@@ -190,8 +188,8 @@ Describe(hll_HyperLogLog) {
         }
 
         It(merge_size_unmatched_registers) {
-            HyperLogLog hll(16);
-            HyperLogLog hll2(10);
+            HyperLogLogHIP hll(16);
+            HyperLogLogHIP hll2(10);
             AssertThrows(std::invalid_argument, hll.merge(hll2));
             Assert::That(LastException<std::invalid_argument>().what(),
                     Is().Containing("number of registers doesn't match:"));

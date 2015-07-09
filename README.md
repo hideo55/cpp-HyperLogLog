@@ -7,6 +7,7 @@ C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/F
 ## Usage
 
 HyperLoglog is a headers-only library so you just need to include "hyperloglog.hpp" and "murmur3.h" to use this project.
+You can use normal HyperLogLog counter class(hll::HyperLogLog) and HyperLogLog counter with HIP(Histric Inverse Probability) Estimator class(hll::HyperLogLogHIP).
 
 ```C++
 
