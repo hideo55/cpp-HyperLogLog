@@ -31,9 +31,9 @@ static void genRandomString(size_t len, std::string& str) {
 }
 
 static std::map<std::string, bool> GEN_STRINGS;
-static void getUniqueString(std::string& str) {
+static void getUniqueString(size_t len, std::string& str) {
     do {
-        genRandomString(10, str);
+        genRandomString(len, str);
     } while (GEN_STRINGS.find(str) != GEN_STRINGS.end());
     GEN_STRINGS.insert(std::make_pair(str, true));
 }
@@ -94,18 +94,17 @@ Describe(hll_HyperLogLogHIP) {
     }
 
     It(estimate_cardinality) {
-        uint32_t k = 30;
+        uint32_t k = 16;
         uint32_t registerSize = 1UL << k;
         double expectRatio = sqrt(2.0 / M_PI * ((double)registerSize - 2.0));
         double error = 0.0;
-        size_t dataNum = 500;
+        size_t dataNum = (size_t(1) << 16) + size_t(1);
         size_t execNum = 10;
         for (size_t n = 0; n < execNum; ++n) {
             HyperLogLogHIP hll(k);
             std::map<std::string, bool>().swap(GEN_STRINGS);
             for (size_t i = 1; i < dataNum; ++i) {
-                std::string str;
-                getUniqueString(str);
+                std::string str((const char*)&i, sizeof(i));
                 hll.add(str.c_str(), str.size());
             }
             double cardinality = hll.estimate();
@@ -121,7 +120,7 @@ Describe(hll_HyperLogLogHIP) {
         HyperLogLogHIP hll(k);
         for (size_t i = 1; i < dataNum; ++i) {
             std::string str;
-            getUniqueString(str);
+            getUniqueString((i % 100) + 10, str);
             hll.add(str.c_str(), str.size());
         }
         double cardinality = hll.estimate();
@@ -145,7 +144,7 @@ Describe(hll_HyperLogLogHIP) {
         size_t dataNum = 100;
         for (size_t i = 1; i < dataNum; ++i) {
             std::string str;
-            getUniqueString(str);
+            getUniqueString(i + 10, str);
             hll.add(str.c_str(), str.size());
         }
         Assert::That(hll.estimate(), !Equals(0.0f));
@@ -167,7 +166,7 @@ Describe(hll_HyperLogLogHIP) {
                 std::map<std::string, bool>().swap(GEN_STRINGS);
                 for (size_t i = 1; i < dataNum; ++i) {
                     std::string str;
-                    getUniqueString(str);
+                    getUniqueString((i % 100) + 10, str);
                     hll.add(str.c_str(), str.size());
                 }
 
@@ -175,7 +174,7 @@ Describe(hll_HyperLogLogHIP) {
 
                 for (size_t i = 1; i < dataNum2; ++i) {
                     std::string str;
-                    getUniqueString(str);
+                    getUniqueString((i % 100) + 10, str);
                     hll2.add(str.c_str(), str.size());
                 }
 
