@@ -2,7 +2,7 @@
 
 # HyperLoglog
 
-C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf) algorithm and [HIP(Histric Inverse Probability) Estimator](http://arxiv.org/pdf/1306.3284v5.pdf).
+C++ implementation of [HyperLogLog](http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf) algorithm and [HIP(Historic Inverse Probability) Estimator](http://arxiv.org/pdf/1306.3284v5.pdf).
 
 ## Usage
 
