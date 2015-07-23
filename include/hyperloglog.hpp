@@ -17,12 +17,6 @@
 
 #define HLL_HASH_SEED 313
 
-#if defined(__has_builtin) && (defined(__GNUC__) || defined(__clang__))
-
-#define _GET_CLZ(x, b) (uint8_t)std::min(b, ::__builtin_clzl(x))
-
-#else 
-
 inline uint8_t _get_leading_zero_count(uint32_t x, uint8_t b) {
 
 #if defined (_MSC_VER)
@@ -41,7 +35,6 @@ inline uint8_t _get_leading_zero_count(uint32_t x, uint8_t b) {
 
 }
 #define _GET_CLZ(x, b) _get_leading_zero_count(x, b)
-#endif /* defined(__GNUC__) */
 
 namespace hll {
 
@@ -96,7 +89,7 @@ public:
     void add(const char* str, uint32_t len) {
         uint32_t hash;
         MurmurHash3_x86_32(str, len, HLL_HASH_SEED, (void*) &hash);
-        uint32_t index = hash >> (32 - b_);
+        uint32_t index = hash & ((1 <<  b_) - 1);
         uint8_t rank = _GET_CLZ((hash << b_), 32 - b_);
         if (rank > M_[index]) {
             M_[index] = rank;
@@ -112,7 +105,7 @@ public:
         double estimate;
         double sum = 0.0;
         for (uint32_t i = 0; i < m_; i++) {
-            sum += 1.0 / std::pow(2.0, M_[i]);
+            sum += 1.0 / (1 << M_[i]);
         }
         estimate = alphaMM_ / sum; // E in the original paper
         if (estimate <= 2.5 * m_) {
