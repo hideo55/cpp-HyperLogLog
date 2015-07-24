@@ -17,6 +17,12 @@
 
 #define HLL_HASH_SEED 313
 
+#if defined(__has_builtin) && (defined(__GNUC__) || defined(__clang__))
+
+#define _GET_CLZ(x, b) (uint8_t)std::min(b, ::__builtin_clz(x)) + 1
+
+#else
+
 inline uint8_t _get_leading_zero_count(uint32_t x, uint8_t b) {
 
 #if defined (_MSC_VER)
@@ -35,6 +41,7 @@ inline uint8_t _get_leading_zero_count(uint32_t x, uint8_t b) {
 
 }
 #define _GET_CLZ(x, b) _get_leading_zero_count(x, b)
+#endif /* defined(__GNUC__) */
 
 namespace hll {
 
