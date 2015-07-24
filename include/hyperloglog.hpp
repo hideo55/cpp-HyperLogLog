@@ -147,7 +147,7 @@ public:
         }
         for (uint32_t r = 0; r < m_; ++r) {
             if (M_[r] < other.M_[r]) {
-                M_[r] = other.M_[r];
+                M_[r] |= other.M_[r];
             }
         }
     }
@@ -289,7 +289,7 @@ public:
             if (b < b_other) {
                 c_ += 1.0 / (p_/m_);
                 p_ -= 1.0/(1 << b);
-                M_[r] = b_other;
+                M_[r] |= b_other;
                 if(b_other < register_limit_){
                     p_ += 1.0/(1 << b_other);
                 }
