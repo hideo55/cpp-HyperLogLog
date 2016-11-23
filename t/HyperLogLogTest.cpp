@@ -93,11 +93,11 @@ Describe(hll_HyperLogLog) {
     }
 
     It(estimate_cardinality) {
-        uint32_t k = 20;
+        uint32_t k = 14;
         uint32_t registerSize = 1UL << k;
         double expectRatio = 1.04 / sqrt((double)registerSize);
         double error = 0.0;
-        size_t dataNum = (size_t(1) << 16) + size_t(1);
+        size_t dataNum = (size_t(1) << 24) + size_t(1);
         size_t execNum = 10;
 #if defined(HLL_HEAVYTEST)
         k = 30;

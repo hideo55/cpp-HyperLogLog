@@ -94,11 +94,11 @@ Describe(hll_HyperLogLogHIP) {
     }
 
     It(estimate_cardinality) {
-        uint32_t k = 16;
+        uint32_t k = 14;
         uint32_t registerSize = 1UL << k;
         double expectRatio = sqrt(2.0 / M_PI * ((double)registerSize - 2.0));
         double error = 0.0;
-        size_t dataNum = (size_t(1) << 16) + size_t(1);
+        size_t dataNum = (size_t(1) << 24) + size_t(1);
         size_t execNum = 10;
         for (size_t n = 0; n < execNum; ++n) {
             HyperLogLogHIP hll(k);
