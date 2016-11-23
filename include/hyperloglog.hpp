@@ -17,6 +17,12 @@
 
 #define HLL_HASH_SEED 313
 
+#if defined(__has_builtin) && (defined(__GNUC__) || defined(__clang__))
+
+#define _GET_CLZ(x, b) (uint8_t)std::min(b, ::__builtin_clz(x)) + 1
+
+#else
+
 inline uint8_t _get_leading_zero_count(uint32_t x, uint8_t b) {
 
 #if defined (_MSC_VER)
@@ -35,6 +41,7 @@ inline uint8_t _get_leading_zero_count(uint32_t x, uint8_t b) {
 
 }
 #define _GET_CLZ(x, b) _get_leading_zero_count(x, b)
+#endif /* defined(__GNUC__) */
 
 namespace hll {
 
@@ -140,7 +147,7 @@ public:
         }
         for (uint32_t r = 0; r < m_; ++r) {
             if (M_[r] < other.M_[r]) {
-                M_[r] = other.M_[r];
+                M_[r] |= other.M_[r];
             }
         }
     }
@@ -282,7 +289,7 @@ public:
             if (b < b_other) {
                 c_ += 1.0 / (p_/m_);
                 p_ -= 1.0/(1 << b);
-                M_[r] = b_other;
+                M_[r] |= b_other;
                 if(b_other < register_limit_){
                     p_ += 1.0/(1 << b_other);
                 }
